@@ -82,3 +82,5 @@ functions/*.zip
 # eleventy.js
 .cache/
 dist
+
+money.txt
