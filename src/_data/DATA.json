@@ -3,22 +3,53 @@
     {
       "id": "visa_docs",
       "title": "Visa documents",
-      "hours": 10
+      "hours": 10,
+      "priority_bonus": 1.2
     },
     {
       "id": "sports",
       "title": "15 min sports",
-      "hours": 7
+      "hours": 7,
+      "priority_bonus": 1
     },
     {
       "id": "deep_learning_udemy",
       "title": "Udemy course",
-      "hours": 10
+      "hours": 10,
+      "priority_bonus": 1
     },
     {
       "id": "deep_learning_coursera",
       "title": "Coursera course",
-      "hours": 10
+      "hours": 10,
+      "priority_bonus": 1
+    }
+  ],
+  "shop_items": [
+    {
+      "id": "coke",
+      "description": "A bottle of Coca Cola",
+      "price": 200
+    },
+    {
+      "id": "pop-corn",
+      "description": "Watch a movie",
+      "price": 100
+    },
+    {
+      "id": "chocolate",
+      "description": "A chocolate bar",
+      "price": 200
+    },
+    {
+      "id": "gamepad",
+      "description": "10 hours of video games",
+      "price": 150
+    },
+    {
+      "id": "coffee",
+      "description": "A cup of coffee",
+      "price": 100
     }
   ]
 }

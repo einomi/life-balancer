@@ -1,3 +1,7 @@
+import { playSound } from '../../js/utils/play-sound';
+
+import dice from './dice';
+
 const LOCAL_STORAGE_KEY = 'life-balancer.learn-item';
 const CLICK_SOUND = '/click.wav';
 const clickAudio = new Audio(CLICK_SOUND);
@@ -58,15 +62,16 @@ class LearnItem {
     });
 
     this.diceButton.addEventListener('click', () => {
-      this.playClickSound();
-      this.rollDice();
+      const percentageOfCompleted =
+        this.value / this.valuesElement.children.length;
+      dice.roll(percentageOfCompleted);
+      this.value = 0;
+      this.onUpdate();
     });
   }
 
   playClickSound() {
-    clickAudio.pause();
-    clickAudio.currentTime = 0;
-    clickAudio.play();
+    playSound(clickAudio);
   }
 
   increment() {
@@ -113,10 +118,6 @@ class LearnItem {
     } else {
       this.diceButton.classList.remove('_active');
     }
-  }
-
-  rollDice() {
-    // to implement
   }
 }
 

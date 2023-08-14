@@ -7,16 +7,21 @@ const LOCAL_STORAGE_KEY = 'life-balancer.money';
 class Money {
   constructor() {
     this.value = this.getValue();
-    if (!this.value) {
+    if (this.value == null) {
       this.value = 0;
       this.setValue(this.value);
     }
+
+    this.balanceElement = /** @type {HTMLElement} */ (
+      document.querySelector('[data-money-balance]')
+    );
+    this.balanceElement.textContent = String(this.value);
   }
 
   getValue() {
     const localStorageValue = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (!localStorageValue) {
-      return 0;
+      return undefined;
     }
     const array = JSON.parse(localStorageValue);
     return array[array.length - 1];
@@ -32,6 +37,19 @@ class Money {
     const array = JSON.parse(localStorageValue);
     array.push(this.value);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(array));
+    this.balanceElement.textContent = String(this.value);
+  }
+
+  /** @param {number} amount */
+  addMoney(amount) {
+    this.value += amount;
+    this.setValue(this.value);
+  }
+
+  /** @param {number} amount */
+  removeMoney(amount) {
+    this.value -= amount;
+    this.setValue(this.value);
   }
 }
 

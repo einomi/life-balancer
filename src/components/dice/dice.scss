@@ -10,6 +10,16 @@
   &__svg {
     width: 22px;
     height: 22px;
-    fill: $color-accent;
+    fill: #555;
+    transition: fill 0.35s ease-out;
+  }
+
+  &:hover {
+    transition-duration: 0.15s;
+
+    .dice__svg {
+      fill: #999;
+      transition-duration: 0.15s;
+    }
   }
 }

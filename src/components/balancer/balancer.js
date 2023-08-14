@@ -1,5 +1,5 @@
 import LearnItem from './learn-item';
-import money from './money';
+import './money';
 
 class Balancer {
   constructor() {
@@ -16,11 +16,6 @@ class Balancer {
       document.querySelector('[data-total-hours]')
     );
     totalHoursElement.textContent = String(totalHours);
-
-    const moneyElement = /** @type {HTMLElement} */ (
-      document.querySelector('[data-money]')
-    );
-    moneyElement.textContent = String(money.value);
   }
 }
 

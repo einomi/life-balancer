@@ -1,0 +1,9 @@
+{% macro shopItem(props) %}
+  <button class="shop-item">
+    <img class="shop-item__image" src="/shop/{{ props.id }}.png" alt="" />
+    <span class="shop-item__popup">
+      <span class="shop-item__popup-description">{{ props.description }}</span>
+      <span class="shop-item__popup-price">Price: {{ props.price }}</span>
+    </span>
+  </button>
+{% endmacro %}
