@@ -1,0 +1,15 @@
+.dice {
+  @include button-reset;
+  @include hover-default;
+  visibility: hidden;
+
+  &._active {
+    visibility: visible;
+  }
+
+  &__svg {
+    width: 28px;
+    height: 28px;
+    fill: $color-accent;
+  }
+}

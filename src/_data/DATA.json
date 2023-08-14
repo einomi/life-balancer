@@ -1,0 +1,24 @@
+{
+  "learn_items": [
+    {
+      "id": "visa_docs",
+      "title": "Visa documents",
+      "hours": 10
+    },
+    {
+      "id": "sports",
+      "title": "15 min sports",
+      "hours": 7
+    },
+    {
+      "id": "deep_learning_udemy",
+      "title": "Udemy course",
+      "hours": 10
+    },
+    {
+      "id": "deep_learning_coursera",
+      "title": "Coursera course",
+      "hours": 10
+    }
+  ]
+}

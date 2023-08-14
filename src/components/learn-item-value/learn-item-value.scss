@@ -1,0 +1,9 @@
+.learn-item-value {
+  background-color: rgba(#d7d7d7, 0.6);
+
+  &._active {
+    background-color: #fff424;
+    box-shadow: 0 0 10px #e7d399;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+}

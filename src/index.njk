@@ -16,22 +16,46 @@
       <h1 class="title tracking-[0.06em] text-[40px] text-[#f4f4f4] mb-10">
         Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px]">v0.0.1</span>
       </h1>
-      <div>
-        <h2 class="text-[#abaeba] text-2xl mb-5">
-          Documents for the visa
-        </h2>
-        <div>
-          <div class="flex space-x-6 items-center">
-            <button class="paper-icon _minus"></button>
-            {% for doc in range(10) %}
-              <div class="w-[8px] bg-[#999] rounded-[100%]">
-                <div class="pt-[100%]"></div>
+      <div class="space-y-8">
+        {% for item in DATA.learn_items %}
+          <div data-learn-item="{{ item.id }}">
+            <h2 class="text-[#abaeba] text-[28px] mb-3">
+              {{ item.title }}
+            </h2>
+            <div>
+              <div class="flex items-center">
+                <div class="flex items-center space-x-6">
+                  <button class="paper-icon _minus" data-button-minus></button>
+                  <div class="flex items-center space-x-5" data-values>
+                    {% for doc in range(item.hours) %}
+                      <div class="learn-item-value w-[8px] rounded-[100%]">
+                        <div class="pt-[100%]"></div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <button class="paper-icon _plus" data-button-plus></button>
+                </div>
+                <div class="ml-10">
+                  {% include './components/dice/dice.njk' %}
+                </div>
               </div>
-            {% endfor %}
-            <button class="paper-icon _plus"></button>
+            </div>
           </div>
+        {% endfor %}
+      </div>
+      <div class="mb-10 mt-10">
+        <div class="text-[#abaeba] text-[20px]">
+          Total hours: <span data-total-hours></span>
         </div>
+      </div>
+      <div>
+        <h2 class="text-[32px]">
+          Buy items
+        </h2>
       </div>
     </div>
   </div>
+  <script>
+    const DATA = {{ DATA|dump|safe }}
+  </script>
 {% endblock %}
