@@ -57,16 +57,21 @@ class Inventory {
 
   updateCellElements() {
     this.cellElements.forEach((element) => {
-      // remove img element
       const imgElement = element.querySelector('img');
       element.dataset.id = '';
       if (imgElement) {
         imgElement.remove();
       }
+      const popupElement = /** @type {HTMLElement} */ (
+        element.querySelector('[data-popup]')
+      );
+      popupElement.dataset.disabled = 'true';
+      element.dataset.empty = 'true';
     });
 
     this.items.forEach((id, index) => {
       const element = this.cellElements[index];
+      element.dataset.empty = 'false';
       const imgElement = document.createElement('img');
       imgElement.src = `/shop/${id}.png`;
       element.appendChild(imgElement);
@@ -78,6 +83,7 @@ class Inventory {
       const popupElement = /** @type {HTMLElement} */ (
         element.querySelector('[data-popup]')
       );
+      popupElement.dataset.disabled = 'false';
       const descriptionElement = /** @type {HTMLElement} */ (
         popupElement.querySelector('[data-popup-description]')
       );

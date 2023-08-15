@@ -34,10 +34,10 @@ class LearnItem {
     );
 
     // for each item id create a record in local storage if it doesn't exist
-    const key = `${LOCAL_STORAGE_KEY}.${data.id}`;
-    const localStorageValue = localStorage.getItem(key);
+    this.localStorageKey = `${LOCAL_STORAGE_KEY}.${data.id}`;
+    const localStorageValue = localStorage.getItem(this.localStorageKey);
     if (!localStorageValue) {
-      localStorage.setItem(key, String(this.value));
+      this.saveStateToLocalStorage();
     } else {
       this.value = Number(localStorageValue);
     }
@@ -69,8 +69,11 @@ class LearnItem {
       diceRoll.onDestroy(() => {
         this.diceButton.classList.remove('_disabled');
       });
-      this.value = 0;
-      this.onUpdate();
+      diceRoll.onRollEnd(() => {
+        this.value = 0;
+        this.saveStateToLocalStorage();
+        this.onUpdate();
+      });
     });
   }
 
@@ -83,9 +86,13 @@ class LearnItem {
       return;
     }
     this.value += 1;
-    localStorage.setItem(`${LOCAL_STORAGE_KEY}.${this.id}`, String(this.value));
+    this.saveStateToLocalStorage();
 
     this.onUpdate();
+  }
+
+  saveStateToLocalStorage() {
+    localStorage.setItem(this.localStorageKey, String(this.value));
   }
 
   decrement() {
@@ -93,7 +100,7 @@ class LearnItem {
       return;
     }
     this.value -= 1;
-    localStorage.setItem(`${LOCAL_STORAGE_KEY}.${this.id}`, String(this.value));
+    this.saveStateToLocalStorage();
 
     this.onUpdate();
   }

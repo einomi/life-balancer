@@ -22,4 +22,8 @@
   &__price {
     color: #f5cf72;
   }
+
+  &[data-disabled='true'] {
+    display: none;
+  }
 }

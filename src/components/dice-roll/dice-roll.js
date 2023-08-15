@@ -103,6 +103,10 @@ class DiceRoll {
     );
   }
 
+  getRandomD20Number() {
+    return Math.round(Math.random() * 20 + 1);
+  }
+
   roll() {
     this.buttonRoll.disabled = true;
     gsap.to(this.buttonRoll, { duration: 0.35, autoAlpha: 0 });
@@ -111,20 +115,22 @@ class DiceRoll {
 
     this.playDiceRollSound();
 
-    let shouldGiveReward = false;
+    this.shouldGiveReward = false;
 
-    function getRandomD20Number() {
-      return Math.round(Math.random() * 20 + 1);
-    }
-
-    const diceRollNumber = getRandomD20Number();
+    const diceRollNumber = this.getRandomD20Number();
+    const isCriticalSuccess = diceRollNumber === 20;
 
     if (diceRollNumber > 1 && diceRollNumber >= this.requiredDiceRollNumber) {
-      shouldGiveReward = true;
+      this.shouldGiveReward = true;
     }
 
-    if (shouldGiveReward) {
+    if (this.shouldGiveReward) {
       this.amountOfMoney = Math.round(diceRollNumber * 10 + 130);
+
+      if (isCriticalSuccess) {
+        this.amountOfMoney *= 2;
+      }
+
       this.moneyAmountElement.innerHTML = String(this.amountOfMoney);
 
       setTimeout(() => {
@@ -162,7 +168,7 @@ class DiceRoll {
 
     let prevProgress = 0;
 
-    this.numberElement.innerHTML = String(getRandomD20Number());
+    this.numberElement.innerHTML = String(this.getRandomD20Number());
     gsap.to(progress, {
       value: 1,
       duration: 2,
@@ -175,13 +181,12 @@ class DiceRoll {
         if (progress.value >= 0.95) {
           this.numberElement.innerHTML = String(diceRollNumber);
           this.numberElement.classList.remove('_rolling');
+          emitter.emit('diceRoll:rollEnd', this.shouldGiveReward);
         } else {
-          this.numberElement.innerHTML = String(getRandomD20Number());
+          this.numberElement.innerHTML = String(this.getRandomD20Number());
         }
       },
     });
-
-    return shouldGiveReward;
   }
 
   hide() {
@@ -195,7 +200,7 @@ class DiceRoll {
   }
 
   destroy() {
-    emitter.emit('diceRoll:destroy');
+    emitter.emit('diceRoll:destroy', this.shouldGiveReward);
     this.buttonRoll.disabled = false;
     gsap.set(this.buttonRoll, { visibility: 'visible', alpha: 0 });
     gsap.set(this.moneyContainerElement, { autoAlpha: 0 });
@@ -211,6 +216,11 @@ class DiceRoll {
   /** @param {() => void} callback */
   onDestroy(callback) {
     emitter.on('diceRoll:destroy', callback);
+  }
+
+  /** @param {(shouldGiveReward: boolean) => void} callback */
+  onRollEnd(callback) {
+    emitter.on('diceRoll:rollEnd', callback);
   }
 }
 

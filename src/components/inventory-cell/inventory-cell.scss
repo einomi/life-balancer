@@ -17,4 +17,8 @@
   img {
     transition: opacity 0.2s ease-in-out;
   }
+
+  &[data-empty='true'] {
+    pointer-events: none;
+  }
 }
