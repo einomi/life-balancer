@@ -1,0 +1,28 @@
+.inventory {
+  $gap-color: rgba(#28282a, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  &__row {
+    display: flex;
+    border-right: 2px solid $gap-color;
+
+    &:last-child {
+      border-bottom: 2px solid $gap-color;
+    }
+  }
+
+  &__cell {
+    background-color: rgba(#000, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    flex-shrink: 0;
+    border: 2px solid $gap-color;
+    border-right: none;
+    border-bottom: none;
+  }
+}

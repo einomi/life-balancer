@@ -19,6 +19,9 @@ class Dice {
     this.numberElement = /** @type {HTMLElement} */ (
       this.container.querySelector('[data-dice-number]')
     );
+    this.moneyContainerElement = /** @type {HTMLElement} */ (
+      this.container.querySelector('[data-dice-money-container]')
+    );
     this.closeButtonElement = /** @type {HTMLElement} */ (
       this.container.querySelector('[data-dice-close-button]')
     );

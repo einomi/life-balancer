@@ -7,7 +7,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: rgba(#000, 0.5);
+  background-color: rgba(#000, 0.7);
   opacity: 0;
   visibility: hidden;
   will-change: transform;
@@ -89,8 +89,14 @@
   }
 
   &__title {
-    margin-bottom: 1.5em;
     font-size: 32px;
+    margin-bottom: -0.4em;
+  }
+
+  &__required-number {
+    font-size: 36px;
+    color: $color-accent;
+    margin-bottom: 1em;
   }
 
   &__dice {
@@ -98,7 +104,7 @@
     fill: #c5c1b3;
 
     &-svg {
-      width: 250px;
+      width: 180px;
       max-width: 100%;
     }
 
@@ -107,11 +113,36 @@
       top: 50%;
       left: 50%;
       color: #000;
-      font-size: 80px;
+      font-size: 50px;
       font-weight: 700;
       text-align: center;
       text-shadow: 0 -2px 0 rgba(#fff, 0.5);
       transform: translate(-50%, -60%);
     }
+  }
+
+  &__money {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    color: $color-accent;
+  }
+
+  &__button {
+    @include hover-default;
+    background-color: #c2af8e;
+    color: #000;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: 10px;
+    min-width: 100px;
+    height: 40px;
+    padding: 0 10px;
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
   }
 }

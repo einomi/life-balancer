@@ -9,56 +9,95 @@
     class="fixed left-0 top-0 w-full h-full object-cover" />
   <div class="overlay fixed w-full h-full bg-[#040711] opacity-70"></div>
   <div class="page-home page relative">
-    <div class="container relative">
-      <div class="money absolute right-10 top-0 text-[28px] text-[#8c8c8c] flex items-center space-x-2">
-        <img src="/money.png"
-          alt=""
-          class="w-[21px] flex-shrink-0 relative top-[0.15em]" />
-        <span data-money-balance>2230</span>
-      </div>
-      <h1 class="title tracking-[0.06em] text-[40px] text-[#f4f4f4] mb-10">
-        Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px]">v0.0.1</span>
-      </h1>
-      <div class="space-y-8">
-        {% for item in DATA.learn_items %}
-          <div data-learn-item="{{ item.id }}" class="select-none">
-            <h2 class="text-[#abaeba] text-[28px] mb-3">
-              {{ item.title }}
+    <div class="container relative min-h-[100vh] flex items-center">
+      <div class="container__inner w-full relative">
+        <div class="money absolute right-0 top-0 text-[28px] text-[#8c8c8c] flex items-center space-x-2">
+          <img src="/money.png"
+            alt=""
+            class="w-[21px] flex-shrink-0 relative top-[0.15em]" />
+          <span data-money-balance>2230</span>
+        </div>
+        <h1 class="title tracking-[0.06em] text-[40px] text-[#f4f4f4] mb-20">
+          Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px]">v0.0.1</span>
+        </h1>
+        <div class="flex justify-between">
+          <div>
+            <h2 class="text-[32px] mb-4">
+              Activities
             </h2>
-            <div>
-              <div class="flex items-center">
-                <div class="flex items-center space-x-6">
-                  <button class="paper-icon _minus" data-button-minus></button>
-                  <div class="flex items-center space-x-5" data-values>
-                    {% for doc in range(item.hours) %}
-                      <div class="learn-item-value w-[8px] rounded-[100%]">
-                        <div class="pt-[100%]"></div>
+            <div class="space-y-8">
+              {% for item in DATA.learn_items %}
+                <div data-learn-item="{{ item.id }}" class="select-none">
+                  <h2 class="text-[#abaeba] text-[24px] mb-3">
+                    {{ item.title }}
+                  </h2>
+                  <div>
+                    <div class="flex items-center">
+                      <div class="flex items-center space-x-6">
+                        <button class="paper-icon _minus" data-button-minus>
+
+                        </button>
+                        <div class="flex items-center space-x-5" data-values>
+                          {% for doc in range(item.hours) %}
+                            <div class="learn-item-value w-[6px] rounded-[100%]">
+                              <div class="pt-[100%]"></div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                        <button class="paper-icon _plus" data-button-plus>
+
+                        </button>
                       </div>
-                    {% endfor %}
+                      <div class="ml-6 flex">
+                        {% include './components/dice/dice.njk' %}
+                      </div>
+                    </div>
                   </div>
-                  <button class="paper-icon _plus" data-button-plus></button>
                 </div>
-                <div class="ml-6 flex">
-                  {% include './components/dice/dice.njk' %}
+              {% endfor %}
+              <div class="mb-10 mt-10">
+                <div class="text-[#abaeba] text-[20px]">
+                  Total hours: <span data-total-hours></span>
                 </div>
               </div>
             </div>
           </div>
-        {% endfor %}
-      </div>
-      <div class="mb-10 mt-10">
-        <div class="text-[#abaeba] text-[20px]">
-          Total hours: <span data-total-hours></span>
-        </div>
-      </div>
-      <div>
-        <h2 class="text-[32px] mb-4">
-          Buy items
-        </h2>
-        <div class="flex space-x-5">
-          {% for item in DATA.shop_items %}
-            {{ shopItem(item) }}
-          {% endfor %}
+
+          <div>
+            <div class="mb-10">
+              <h2 class="text-[32px] mb-4">
+                Inventory
+              </h2>
+              <div class="inventory">
+                <div class="inventory__row">
+                  <div class="inventory__cell">
+                    <img src="/shop/coke.png" alt="" />
+                  </div>
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                </div>
+                <div class="inventory__row">
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                  <div class="inventory__cell"></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 class="text-[32px] mb-4">
+                Buy items
+              </h2>
+              <div class="flex space-x-4">
+                {% for item in DATA.shop_items %}
+                  {{ shopItem(item) }}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,7 +106,10 @@
     <button class="dice-roll__close" data-dice-close-button></button>
     <div class="dice-roll__box" data-dice-box>
       <div class="dice-roll__title">
-        Required number: <span data-dice-required-number></span>
+        Required number
+      </div>
+      <div class="dice-roll__required-number">
+        <span data-dice-required-number></span>
       </div>
       <div class="dice-roll__dice">
         <svg class="dice-roll__dice-svg"
@@ -93,6 +135,13 @@
           20
         </div>
       </div>
+      <div class="dice-roll__money space-x-3" data-dice-money-container>
+        <img src="/money.png"
+          alt=""
+          class="w-[30px] flex-shrink-0 relative top-[0.15em]" />
+        <span>170</span>
+      </div>
+      <button class="dice-roll__button">Take</button>
     </div>
   </div>
   <script>
