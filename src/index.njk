@@ -2,6 +2,7 @@
 
 {% from './components/button/button.njk' import button %}
 {% from './components/shop-item/shop-item.njk' import shopItem %}
+{% from './components/inventory-cell/inventory-cell.njk' import inventoryCell %}
 
 {% block content %}
   <img src="/background.jpg"
@@ -71,20 +72,24 @@
               </h2>
               <div class="inventory">
                 <div class="inventory__row">
-                  <div class="inventory__cell">
-                    <img src="/shop/coke.png" alt="" />
-                  </div>
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
+                  {{
+                    inventoryCell({
+                      id: 'coke',
+                      description: 'A bottle of Coca&nbsp;Cola',
+                      price: 200
+                    })
+                  }}
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
                 </div>
                 <div class="inventory__row">
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
-                  <div class="inventory__cell"></div>
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
+                  {{ inventoryCell({}) }}
                 </div>
               </div>
             </div>

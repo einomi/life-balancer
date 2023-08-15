@@ -1,3 +1,7 @@
+import gsap, { Power3 } from 'gsap';
+
+import { emitter } from '../../js/emitter';
+
 const LOCAL_STORAGE_KEY = 'life-balancer.money';
 
 // money is kept as an array of integers
@@ -16,6 +20,13 @@ class Money {
       document.querySelector('[data-money-balance]')
     );
     this.balanceElement.textContent = String(this.value);
+
+    emitter.on(
+      'addMoney',
+      /** @param {number} amount */ (amount) => {
+        this.addMoney(amount);
+      }
+    );
   }
 
   getValue() {
@@ -28,7 +39,7 @@ class Money {
   }
 
   /** @param {number} value */
-  setValue(value) {
+  setValue(value, updateElement = true) {
     const localStorageValue = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (!localStorageValue) {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([value]));
@@ -37,13 +48,30 @@ class Money {
     const array = JSON.parse(localStorageValue);
     array.push(this.value);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(array));
-    this.balanceElement.textContent = String(this.value);
+    if (updateElement) {
+      this.balanceElement.textContent = String(this.value);
+    }
   }
 
   /** @param {number} amount */
   addMoney(amount) {
+    const animationObj = {
+      value: this.value,
+    };
+
     this.value += amount;
-    this.setValue(this.value);
+    this.setValue(this.value, false);
+
+    gsap.to(animationObj, {
+      value: this.value,
+      duration: 1,
+      ease: Power3.easeInOut,
+      onUpdate: () => {
+        this.balanceElement.textContent = String(
+          Math.round(animationObj.value)
+        );
+      },
+    });
   }
 
   /** @param {number} amount */

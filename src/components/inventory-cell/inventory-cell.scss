@@ -1,0 +1,10 @@
+.inventory-cell {
+  position: relative;
+
+  &:hover {
+    .popup {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

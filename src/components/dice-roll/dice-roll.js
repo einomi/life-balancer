@@ -39,6 +39,9 @@ class DiceRoll {
     this.buttonOkay = /** @type {HTMLButtonElement} */ (
       this.container.querySelector('[data-dice-button-okay]')
     );
+    this.moneyAmountElement = /** @type {HTMLElement} */ (
+      this.container.querySelector('[data-dice-money-amount]')
+    );
 
     this.percentageOfCompleted = percentageOfCompleted;
 
@@ -58,6 +61,7 @@ class DiceRoll {
       };
 
     this.requiredDiceRollNumber = 999;
+    this.amountOfMoney = 0;
 
     this.addEvents();
   }
@@ -123,6 +127,9 @@ class DiceRoll {
     }
 
     if (shouldGiveReward) {
+      this.amountOfMoney = Math.round(diceRollNumber * 10 + 130);
+      this.moneyAmountElement.innerHTML = String(this.amountOfMoney);
+
       setTimeout(() => {
         playSound(coinsFallingAudio);
         gsap.fromTo(
@@ -191,18 +198,22 @@ class DiceRoll {
   }
 
   destroy() {
-    emitter.emit('dice-roll:destroy');
+    emitter.emit('diceRoll:destroy');
     this.buttonRoll.disabled = false;
     gsap.set(this.buttonRoll, { visibility: 'visible', alpha: 0 });
     gsap.set(this.moneyContainerElement, { autoAlpha: 0 });
     gsap.set(this.noRewardElement, { autoAlpha: 0 });
     gsap.set(this.buttonOkay, { autoAlpha: 0 });
     this.removeEvents();
+
+    if (this.amountOfMoney) {
+      emitter.emit('addMoney', this.amountOfMoney);
+    }
   }
 
   /** @param {() => void} callback */
   onDestroy(callback) {
-    emitter.on('dice-roll:destroy', callback);
+    emitter.on('diceRoll:destroy', callback);
   }
 }
 
