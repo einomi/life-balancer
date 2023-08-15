@@ -2,6 +2,7 @@
 
 import { emitter } from '../../js/emitter';
 import { playCoinsFallingSound } from '../../js/utils/play-sound';
+import inventory from '../inventory/inventory';
 
 class Shop {
   constructor() {
@@ -18,6 +19,12 @@ class Shop {
 
   /** @param {HTMLElement} element */
   buyItem(element) {
+    if (inventory.hasMaxItems()) {
+      // eslint-disable-next-line no-alert
+      alert('You have too many items in the inventory. Remove some first.');
+      return;
+    }
+
     const price = Number(element.dataset.price);
     const id = element.dataset.id;
     if (isNaN(price)) {

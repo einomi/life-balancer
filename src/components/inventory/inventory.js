@@ -17,6 +17,8 @@ class Inventory {
 
     this.init();
 
+    this.maxItems = this.cellElements.length;
+
     this.cellElements.forEach((element) => {
       element.addEventListener('click', () => {
         if (!element.dataset.id) {
@@ -99,6 +101,10 @@ class Inventory {
 
   getItems() {
     return this.items;
+  }
+
+  hasMaxItems() {
+    return this.items.length >= this.maxItems;
   }
 }
 
