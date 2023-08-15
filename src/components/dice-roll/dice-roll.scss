@@ -89,14 +89,14 @@
   }
 
   &__title {
-    font-size: 32px;
     margin-bottom: -0.4em;
+    font-size: 32px;
   }
 
   &__required-number {
-    font-size: 36px;
-    color: $color-accent;
     margin-bottom: 1em;
+    color: $color-accent;
+    font-size: 36px;
   }
 
   &__dice {
@@ -122,27 +122,27 @@
   }
 
   &__money {
-    margin-top: 1em;
     display: flex;
     align-items: center;
-    font-size: 28px;
+    margin-top: 1em;
     color: $color-accent;
+    font-size: 28px;
   }
 
   &__button {
     @include hover-default;
-    background-color: #c2af8e;
-    color: #000;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    border-radius: 10px;
+    display: flex;
     min-width: 100px;
     height: 40px;
-    padding: 0 10px;
-    display: flex;
-    font-size: 20px;
     align-items: center;
     justify-content: center;
+    padding: 0 10px;
     margin-top: 2em;
+    background-color: #c2af8e;
+    border-radius: 10px;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
   }
 }

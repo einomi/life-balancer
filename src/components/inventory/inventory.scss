@@ -14,15 +14,15 @@
   }
 
   &__cell {
-    background-color: rgba(#000, 0.4);
     display: flex;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    height: 60px;
-    width: 60px;
-    flex-shrink: 0;
     border: 2px solid $gap-color;
     border-right: none;
     border-bottom: none;
+    background-color: rgba(#000, 0.4);
   }
 }
