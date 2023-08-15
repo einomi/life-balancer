@@ -1,0 +1,6 @@
+{% macro popup(props) %}
+  <span class="popup">
+    <span class="popup__description">{{ props.description|safe }}</span>
+    <span class="popup__price">Price: {{ props.price }}</span>
+  </span>
+{% endmacro %}

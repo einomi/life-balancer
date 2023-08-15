@@ -1,3 +1,25 @@
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate(-3px, 1px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(3px, -1px);
+  }
+}
+
 .dice-roll {
   position: fixed;
   top: 0;
@@ -7,7 +29,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: rgba(#000, 0.7);
+  background-color: rgba(#000, 0.85);
   opacity: 0;
   visibility: hidden;
   will-change: transform;
@@ -77,6 +99,7 @@
   }
 
   &__box {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,17 +114,23 @@
   &__title {
     margin-bottom: -0.4em;
     font-size: 32px;
+    font-family: Georgia, serif;
   }
 
   &__required-number {
     margin-bottom: 1em;
     color: $color-accent;
-    font-size: 36px;
+    font-size: 40px;
+    font-family: Georgia, serif;
   }
 
   &__dice {
     position: relative;
     fill: #c5c1b3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 
     &-svg {
       width: 180px;
@@ -110,27 +139,45 @@
 
     &-number {
       position: absolute;
-      top: 50%;
-      left: 50%;
       color: #000;
       font-size: 50px;
       font-weight: 700;
       text-align: center;
       text-shadow: 0 -2px 0 rgba(#fff, 0.5);
-      transform: translate(-50%, -60%);
+      will-change: transform;
+
+      &._rolling {
+        animation: shake 0.5s ease-in-out infinite;
+      }
     }
   }
 
   &__money {
+    position: absolute;
+    bottom: -45px;
     display: flex;
     align-items: center;
     margin-top: 1em;
     color: $color-accent;
     font-size: 28px;
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+  }
+
+  &__no-reward {
+    position: absolute;
+    bottom: -45px;
+    font-size: 20px;
+    visibility: hidden;
+    opacity: 0;
+    text-align: center;
   }
 
   &__button {
-    @include hover-default;
+    @include button-reset;
+    position: absolute;
+    bottom: -66px;
     display: flex;
     min-width: 100px;
     height: 40px;
@@ -144,5 +191,22 @@
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.02em;
+    transition: transform 0.1s ease-out, opacity 0.35s ease-out;
+    opacity: 0;
+
+    &:active {
+      transform: scale(1.05);
+    }
+
+    &:hover {
+      opacity: 0.8;
+      transition-duration: 0.1s;
+    }
+
+    &._okay {
+      bottom: -120px;
+      visibility: hidden;
+      opacity: 0;
+    }
   }
 }

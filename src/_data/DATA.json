@@ -28,7 +28,7 @@
   "shop_items": [
     {
       "id": "coke",
-      "description": "A bottle of Coca Cola",
+      "description": "A bottle of Coca&nbsp;Cola",
       "price": 200
     },
     {

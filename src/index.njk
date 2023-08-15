@@ -11,15 +11,16 @@
   <div class="page-home page relative">
     <div class="container relative min-h-[100vh] flex items-center">
       <div class="container__inner w-full relative">
-        <div class="money absolute right-0 top-0 text-[28px] text-[#8c8c8c] flex items-center space-x-2">
+        <div class="money absolute right-0 top-3 text-[28px] text-[#8c8c8c] flex items-center space-x-2">
           <img src="/money.png"
             alt=""
             class="w-[21px] flex-shrink-0 relative top-[0.15em]" />
           <span data-money-balance>2230</span>
         </div>
-        <h1 class="title tracking-[0.06em] text-[40px] text-[#f4f4f4] mb-20">
+        <h1 class="title tracking-[0.06em] text-[40px] text-[#f4f4f4] mb-8">
           Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px]">v0.0.1</span>
         </h1>
+        <div class="h-[1px] bg-[#666] mb-10 opacity-30"></div>
         <div class="flex justify-between">
           <div>
             <h2 class="text-[32px] mb-4">
@@ -102,49 +103,8 @@
       </div>
     </div>
   </div>
-  <div class="dice-roll" data-dice-roll-container>
-    <button class="dice-roll__close" data-dice-close-button></button>
-    <div class="dice-roll__box" data-dice-box>
-      <div class="dice-roll__title">
-        Required number
-      </div>
-      <div class="dice-roll__required-number">
-        <span data-dice-required-number></span>
-      </div>
-      <div class="dice-roll__dice">
-        <svg class="dice-roll__dice-svg"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 77 87.6"
-          xml:space="preserve"
-          data-dice>
-          <polygon points="0.8,66.5 34.6,85.7 11.1,60.5 " />
-          <polygon points="0,25.2 0,65.2 10.3,59.2 " />
-          <polygon points="37,11.6 0.2,20.7 11.4,57.7 " />
-          <polygon points="37.7,0 4.7,18 37.7,9.9 " />
-          <polygon points="64.5,58.8 61.7,53.8 38.5,12 12.5,58.8 " />
-          <polygon points="64,60.3 12.9,60.3 38.5,87.6 46.4,79.1 " />
-          <polygon points="65.9,60.5 42.4,85.7 76.2,66.5 69.3,62.5 " />
-          <polygon points="77,65.2 77,25.2 66.6,59.2 " />
-          <polygon points="40,11.6 65.5,57.7 76.8,20.7 47,13.4 " />
-          <polygon points="39.2,0 39.2,9.9 72.3,18 " />
-        </svg>
-        <div class="dice-roll__dice-number" data-dice-number>
-          20
-        </div>
-      </div>
-      <div class="dice-roll__money space-x-3" data-dice-money-container>
-        <img src="/money.png"
-          alt=""
-          class="w-[30px] flex-shrink-0 relative top-[0.15em]" />
-        <span>170</span>
-      </div>
-      <button class="dice-roll__button">Take</button>
-    </div>
-  </div>
+  {% include './components/dice-roll/dice-roll.njk' %}
   <script>
-    const DATA = {{ DATA|dump|safe }}
+    const DATA = {{ DATA|dump|safe }};
   </script>
 {% endblock %}
