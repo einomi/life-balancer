@@ -1,13 +1,10 @@
 import gsap, { Power1, Power2 } from 'gsap';
 
-import { playSound } from '../../js/utils/play-sound';
+import { playCoinsFallingSound, playSound } from '../../js/utils/play-sound';
 import { emitter } from '../../js/emitter';
 
 const DICE_ROLL_SOUND = '/dice-roll.mp3';
 const diceRollAudio = new Audio(DICE_ROLL_SOUND);
-
-const COINS_FALLING_SOUND = '/coins-falling.mp3';
-const coinsFallingAudio = new Audio(COINS_FALLING_SOUND);
 
 class DiceRoll {
   /** @param {number} percentageOfCompleted */
@@ -131,7 +128,7 @@ class DiceRoll {
       this.moneyAmountElement.innerHTML = String(this.amountOfMoney);
 
       setTimeout(() => {
-        playSound(coinsFallingAudio);
+        playCoinsFallingSound();
         gsap.fromTo(
           [this.moneyContainerElement, this.buttonOkay],
           { autoAlpha: 0 },

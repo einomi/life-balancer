@@ -27,6 +27,13 @@ class Money {
         this.addMoney(amount);
       }
     );
+
+    emitter.on(
+      'removeMoney',
+      /** @param {number} amount */ (amount) => {
+        this.removeMoney(amount);
+      }
+    );
   }
 
   getValue() {
@@ -53,17 +60,19 @@ class Money {
     }
   }
 
-  /** @param {number} amount */
-  addMoney(amount) {
-    const animationObj = {
+  createAnimationObject() {
+    return {
       value: this.value,
     };
+  }
 
-    this.value += amount;
-    this.setValue(this.value, false);
-
+  /**
+   * @param {{value: number}} animationObj
+   * @param {number} valueTo
+   *  */
+  animateToValue(animationObj, valueTo) {
     gsap.to(animationObj, {
-      value: this.value,
+      value: valueTo,
       duration: 1,
       ease: Power3.easeInOut,
       onUpdate: () => {
@@ -75,9 +84,23 @@ class Money {
   }
 
   /** @param {number} amount */
+  addMoney(amount) {
+    const animationObj = this.createAnimationObject();
+
+    this.value += amount;
+    this.setValue(this.value, false);
+
+    this.animateToValue(animationObj, this.value);
+  }
+
+  /** @param {number} amount */
   removeMoney(amount) {
+    const animationObj = this.createAnimationObject();
+
     this.value -= amount;
-    this.setValue(this.value);
+    this.setValue(this.value, false);
+
+    this.animateToValue(animationObj, this.value);
   }
 }
 

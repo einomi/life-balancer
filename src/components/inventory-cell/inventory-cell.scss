@@ -1,10 +1,20 @@
 .inventory-cell {
   position: relative;
+  cursor: pointer;
 
   &:hover {
     .popup {
       opacity: 1;
       visibility: visible;
     }
+
+    img {
+      opacity: 0.5;
+      transition-duration: 0.1s;
+    }
+  }
+
+  img {
+    transition: opacity 0.2s ease-in-out;
   }
 }

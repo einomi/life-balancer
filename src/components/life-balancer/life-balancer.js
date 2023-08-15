@@ -1,7 +1,9 @@
 import LearnItem from './learn-item';
-import './money';
+import '../money/money';
+import '../shop/shop';
+import '../inventory/inventory';
 
-class Balancer {
+class LifeBalancer {
   constructor() {
     const learnItems =
       /** @type {Array<import('./learn-item-type').LearnItemType>} */ (
@@ -19,4 +21,4 @@ class Balancer {
   }
 }
 
-export default new Balancer();
+export default new LifeBalancer();

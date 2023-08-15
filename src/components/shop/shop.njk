@@ -1,0 +1,12 @@
+{% from '../shop-item/shop-item.njk' import shopItem %}
+
+<div>
+  <h2 class="text-[32px] mb-4">
+    Buy items
+  </h2>
+  <div class="flex space-x-4">
+    {% for item in DATA.shop_items %}
+      {{ shopItem(item) }}
+    {% endfor %}
+  </div>
+</div>

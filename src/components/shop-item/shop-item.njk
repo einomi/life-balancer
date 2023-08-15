@@ -1,7 +1,10 @@
 {% from '../popup/popup.njk' import popup %}
 
 {% macro shopItem(props) %}
-  <button class="shop-item">
+  <button class="shop-item"
+    data-shop-item
+    data-id="{{ props.id }}"
+    data-price="{{ props.price }}">
     <img class="shop-item__image" src="/shop/{{ props.id }}.png" alt="" />
     {{ popup(props) }}
   </button>

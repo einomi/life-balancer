@@ -1,5 +1,5 @@
 new (function () {
   this.modules = {
-    Balancer: require('../components/balancer/balancer'),
+    LifeBalancer: require('../components/life-balancer/life-balancer'),
   };
 })();

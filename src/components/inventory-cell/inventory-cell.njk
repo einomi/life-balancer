@@ -1,10 +1,15 @@
 {% from '../popup/popup.njk' import popup %}
 
 {% macro inventoryCell(props) %}
-  <div class="inventory__cell inventory-cell">
+  <div class="inventory__cell inventory-cell" data-inventory-cell>
     {% if props.id %}
       <img src="/shop/{{ props.id }}.png" alt="" />
-      {{ popup(props) }}
     {% endif %}
+    {{
+      popup({
+        description: '',
+        price: ''
+      })
+    }}
   </div>
 {% endmacro %}

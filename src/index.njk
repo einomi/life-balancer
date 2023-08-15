@@ -1,8 +1,6 @@
 {% extends './_layouts/base.njk' %}
 
 {% from './components/button/button.njk' import button %}
-{% from './components/shop-item/shop-item.njk' import shopItem %}
-{% from './components/inventory-cell/inventory-cell.njk' import inventoryCell %}
 
 {% block content %}
   <img src="/background.jpg"
@@ -16,7 +14,7 @@
           <img src="/money.png"
             alt=""
             class="w-[21px] flex-shrink-0 relative top-[0.15em]" />
-          <span data-money-balance>2230</span>
+          <span data-money-balance>0</span>
         </div>
         <h1 class="title tracking-[0.06em] text-[40px] text-[#f4f4f4] mb-8">
           Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px]">v0.0.1</span>
@@ -66,43 +64,8 @@
           </div>
 
           <div>
-            <div class="mb-10">
-              <h2 class="text-[32px] mb-4">
-                Inventory
-              </h2>
-              <div class="inventory">
-                <div class="inventory__row">
-                  {{
-                    inventoryCell({
-                      id: 'coke',
-                      description: 'A bottle of Coca&nbsp;Cola',
-                      price: 200
-                    })
-                  }}
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                </div>
-                <div class="inventory__row">
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                  {{ inventoryCell({}) }}
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2 class="text-[32px] mb-4">
-                Buy items
-              </h2>
-              <div class="flex space-x-4">
-                {% for item in DATA.shop_items %}
-                  {{ shopItem(item) }}
-                {% endfor %}
-              </div>
-            </div>
+            {% include './components/inventory/inventory.njk' %}
+            {% include './components/shop/shop.njk' %}
           </div>
         </div>
       </div>
