@@ -113,24 +113,24 @@
 
   &__title {
     margin-bottom: -0.4em;
-    font-size: 32px;
     font-family: Georgia, serif;
+    font-size: 32px;
   }
 
   &__required-number {
     margin-bottom: 1em;
     color: $color-accent;
-    font-size: 40px;
     font-family: Georgia, serif;
+    font-size: 40px;
   }
 
   &__dice {
     position: relative;
-    fill: #c5c1b3;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    fill: #c5c1b3;
 
     &-svg {
       width: 180px;
@@ -160,18 +160,18 @@
     margin-top: 1em;
     color: $color-accent;
     font-size: 28px;
-    visibility: hidden;
     opacity: 0;
     user-select: none;
+    visibility: hidden;
   }
 
   &__no-reward {
     position: absolute;
     bottom: -45px;
     font-size: 20px;
-    visibility: hidden;
     opacity: 0;
     text-align: center;
+    visibility: hidden;
   }
 
   &__button {
@@ -191,8 +191,8 @@
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.02em;
-    transition: transform 0.1s ease-out, opacity 0.35s ease-out;
     opacity: 0;
+    transition: transform 0.1s ease-out, opacity 0.35s ease-out;
 
     &:active {
       transform: scale(1.05);
@@ -205,8 +205,8 @@
 
     &._okay {
       bottom: -120px;
-      visibility: hidden;
       opacity: 0;
+      visibility: hidden;
     }
   }
 }
