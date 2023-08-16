@@ -23,6 +23,12 @@
       "title": "Coursera course",
       "hours": 10,
       "priority_bonus": 1
+    },
+    {
+      "id": "meditations",
+      "title": "Meditations",
+      "hours": 7,
+      "priority_bonus": 1
     }
   ],
   "shop_items": [
@@ -44,7 +50,7 @@
     {
       "id": "games",
       "description": "1 hour of video games",
-      "price": 70
+      "price": 90
     },
     {
       "id": "coffee",
@@ -54,7 +60,7 @@
     {
       "id": "telegram",
       "description": "1 hour of Telegram",
-      "price": 100
+      "price": 120
     },
     {
       "id": "youtube",
@@ -64,7 +70,7 @@
     {
       "id": "instagram",
       "description": "1 hour of Instagram",
-      "price": 100
+      "price": 120
     }
   ]
 }

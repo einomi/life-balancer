@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 const notifier = require('node-notifier');
 const chalk = require('chalk');
 
-const eleventyProcess = spawn('eleventy', ['--serve', '--port=9000'], {
+const eleventyProcess = spawn('eleventy', ['--serve', '--port=4242'], {
   shell: true,
 });
 
