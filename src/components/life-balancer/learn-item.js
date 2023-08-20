@@ -1,7 +1,10 @@
 import { playSound } from '../../js/utils/play-sound';
 import DiceRoll from '../dice-roll/dice-roll';
+import {
+  getLearnItemValueFromStorage,
+  setLearnItemValueToStorage,
+} from '../../js/utils/get-learn-item-value-from-storage';
 
-const LOCAL_STORAGE_KEY = 'life-balancer.learn-item';
 const CLICK_SOUND = '/click.wav';
 const clickAudio = new Audio(CLICK_SOUND);
 
@@ -34,12 +37,11 @@ class LearnItem {
     );
 
     // for each item id create a record in local storage if it doesn't exist
-    this.localStorageKey = `${LOCAL_STORAGE_KEY}.${data.id}`;
-    const localStorageValue = localStorage.getItem(this.localStorageKey);
+    const localStorageValue = getLearnItemValueFromStorage(data.id);
     if (!localStorageValue) {
       this.saveStateToLocalStorage();
     } else {
-      this.value = Number(localStorageValue);
+      this.value = localStorageValue;
     }
 
     if (this.valuesElement.children && this.valuesElement.children.length > 0) {
@@ -92,7 +94,7 @@ class LearnItem {
   }
 
   saveStateToLocalStorage() {
-    localStorage.setItem(this.localStorageKey, String(this.value));
+    setLearnItemValueToStorage(this.id, this.value);
   }
 
   decrement() {
