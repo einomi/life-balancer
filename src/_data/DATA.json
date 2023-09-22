@@ -3,25 +3,25 @@
     {
       "id": "visa_docs",
       "title": "Visa documents",
-      "hours": 10,
+      "hours": 12,
       "priority_bonus": 1.2
     },
     {
       "id": "sports",
-      "title": "15 min sports",
+      "title": "Daily sports",
       "hours": 7,
       "priority_bonus": 1
     },
     {
       "id": "deep_learning_udemy",
       "title": "Udemy course",
-      "hours": 10,
+      "hours": 6,
       "priority_bonus": 1
     },
     {
       "id": "deep_learning_coursera",
       "title": "Coursera course",
-      "hours": 10,
+      "hours": 6,
       "priority_bonus": 1
     },
     {
@@ -33,44 +33,9 @@
   ],
   "shop_items": [
     {
-      "id": "soda-pop",
-      "description": "A bottle of soda&nbsp;pop",
-      "price": 100
-    },
-    {
-      "id": "movie",
-      "description": "Watch a movie",
+      "id": "1",
+      "description": "Product 1",
       "price": 50
-    },
-    {
-      "id": "chocolate",
-      "description": "A chocolate bar",
-      "price": 110
-    },
-    {
-      "id": "games",
-      "description": "1 hour of video games",
-      "price": 90
-    },
-    {
-      "id": "coffee",
-      "description": "A cup of coffee",
-      "price": 80
-    },
-    {
-      "id": "telegram",
-      "description": "1 hour of Telegram",
-      "price": 120
-    },
-    {
-      "id": "youtube",
-      "description": "1 hour of YouTube",
-      "price": 75
-    },
-    {
-      "id": "instagram",
-      "description": "1 hour of Instagram",
-      "price": 120
     }
   ]
 }
