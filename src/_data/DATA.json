@@ -36,6 +36,21 @@
       "id": "1",
       "description": "Product 1",
       "price": 50
+    },
+    {
+      "id": "2",
+      "description": "Product 2",
+      "price": 75
+    },
+    {
+      "id": "3",
+      "description": "Product 3",
+      "price": 100
+    },
+    {
+      "id": "4",
+      "description": "Product 4",
+      "price": 125
     }
   ]
 }
