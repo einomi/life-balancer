@@ -9,8 +9,9 @@
   justify-content: center;
 
   &__box {
-    width: 60%;
-    min-width: 600px;
+    position: relative;
+    width: 55%;
+    min-width: 700px;
     min-height: 500px;
     padding: 30px 60px;
     border: 3px solid #312e24;
@@ -19,6 +20,14 @@
     background-size: cover;
     border-radius: 5px;
     text-align: center;
+  }
+
+  &__close {
+    @include hover-default;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    user-select: none;
   }
 
   &__title {
@@ -31,6 +40,7 @@
   }
 
   &__heading {
+    color: #999;
     font-size: 28px;
   }
 }
