@@ -1,12 +1,12 @@
-export const LEARN_ITEMS_LOCAL_STORAGE_KEY = 'life-balancer.learn-item';
+export const ACTIVITIES_LOCAL_STORAGE_KEY = 'life-balancer.activity-value';
 
 /** @param {string} id */
 function getKeyWithId(id) {
-  return `${LEARN_ITEMS_LOCAL_STORAGE_KEY}.${id}`;
+  return `${ACTIVITIES_LOCAL_STORAGE_KEY}.${id}`;
 }
 
 /** @param {string} id */
-export function getLearnItemValueFromStorage(id) {
+export function getActivityValueFromStorage(id) {
   const localStorageKey = getKeyWithId(id);
   return Number(localStorage.getItem(localStorageKey));
 }
@@ -15,7 +15,7 @@ export function getLearnItemValueFromStorage(id) {
  * @param {string} id
  * @param {number} value
  *  */
-export function setLearnItemValueToStorage(id, value) {
+export function setActivityValueToStorage(id, value) {
   const localStorageKey = getKeyWithId(id);
   localStorage.setItem(localStorageKey, String(value));
 }

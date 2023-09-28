@@ -1,6 +1,6 @@
-export type LearnItemType = {
+export type ActivityType = {
   id: string;
   title: string;
-  hours: number;
+  sessions: number;
   priority_bonus: number;
 };

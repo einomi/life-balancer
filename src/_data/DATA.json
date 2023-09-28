@@ -1,33 +1,33 @@
 {
-  "learn_items": [
+  "activities": [
     {
-      "id": "visa_docs",
-      "title": "Visa documents",
-      "hours": 12,
+      "id": "activity1",
+      "title": "Activity No. 1",
+      "sessions": 7,
       "priority_bonus": 1.2
     },
     {
-      "id": "sports",
-      "title": "Daily sports",
-      "hours": 7,
+      "id": "activity2",
+      "title": "Activity No. 2",
+      "sessions": 7,
       "priority_bonus": 1
     },
     {
-      "id": "deep_learning_udemy",
-      "title": "Udemy course",
-      "hours": 6,
+      "id": "activity3",
+      "title": "Activity No. 3",
+      "sessions": 6,
       "priority_bonus": 1
     },
     {
-      "id": "deep_learning_coursera",
-      "title": "Coursera course",
-      "hours": 6,
+      "id": "activity4",
+      "title": "Activity No. 4",
+      "sessions": 6,
       "priority_bonus": 1
     },
     {
-      "id": "meditations",
-      "title": "Meditations",
-      "hours": 7,
+      "id": "activity5",
+      "title": "Activity No. 5",
+      "sessions": 7,
       "priority_bonus": 1
     }
   ],

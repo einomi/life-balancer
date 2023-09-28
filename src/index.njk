@@ -37,8 +37,8 @@
               Activities
             </h2>
             <div class="space-y-8">
-              {% for item in DATA.learn_items %}
-                <div data-learn-item="{{ item.id }}" class="select-none">
+              {% for item in DATA.activities %}
+                <div data-activity="{{ item.id }}" class="select-none">
                   <h2 class="text-[#abaeba] text-[24px] mb-3">
                     {{ item.title }}
                   </h2>
@@ -49,8 +49,8 @@
 
                         </button>
                         <div class="flex items-center space-x-5" data-values>
-                          {% for doc in range(item.hours) %}
-                            <div class="learn-item-value w-[6px] rounded-[100%]">
+                          {% for doc in range(item.sessions) %}
+                            <div class="activity-value w-[6px] rounded-[100%]">
                               <div class="pt-[100%]"></div>
                             </div>
                           {% endfor %}
@@ -68,7 +68,7 @@
               {% endfor %}
               <div class="mb-10 mt-10">
                 <div class="text-[#abaeba] text-[20px]">
-                  Total sessions: <span data-total-hours></span>
+                  Total sessions: <span data-total-sessions></span>
                 </div>
               </div>
             </div>

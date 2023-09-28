@@ -1,8 +1,8 @@
 declare const DATA: {
-  learn_items: {
+  activities: {
     id: string;
     title: string;
-    hours: number;
+    sessions: number;
     priority_bonus: number;
   }[];
   shop_items: {

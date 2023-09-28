@@ -1,26 +1,26 @@
 import { playSound } from '../../js/utils/play-sound';
 import DiceRoll from '../dice-roll/dice-roll';
 import {
-  getLearnItemValueFromStorage,
-  setLearnItemValueToStorage,
-} from '../../js/utils/get-learn-item-value-from-storage';
+  getActivityValueFromStorage,
+  setActivityValueToStorage,
+} from '../../js/utils/get-activity-value-from-storage';
 
 const CLICK_SOUND = '/click.wav';
 const clickAudio = new Audio(CLICK_SOUND);
 
-class LearnItem {
+class Activity {
   /**
-   * @param {import('./learn-item-type').LearnItemType} data
+   * @param {import('./activity-type').ActivityType} data
    */
   constructor(data) {
     this.id = data.id;
     this.value = 0;
 
     this.element = /** @type {HTMLElement} */ (
-      document.querySelector(`[data-learn-item="${data.id}"]`)
+      document.querySelector(`[data-activity="${data.id}"]`)
     );
     if (!this.element) {
-      throw new Error(`Element with data-learn-item="${data.id}" not found`);
+      throw new Error(`Element with data-activity="${data.id}" not found`);
     }
     this.valuesElement = /** @type {HTMLElement} */ (
       this.element.querySelector('[data-values]')
@@ -37,7 +37,7 @@ class LearnItem {
     );
 
     // for each item id create a record in local storage if it doesn't exist
-    const localStorageValue = getLearnItemValueFromStorage(data.id);
+    const localStorageValue = getActivityValueFromStorage(data.id);
     if (!localStorageValue) {
       this.saveStateToLocalStorage();
     } else {
@@ -94,7 +94,7 @@ class LearnItem {
   }
 
   saveStateToLocalStorage() {
-    setLearnItemValueToStorage(this.id, this.value);
+    setActivityValueToStorage(this.id, this.value);
   }
 
   decrement() {
@@ -134,4 +134,4 @@ class LearnItem {
   }
 }
 
-export default LearnItem;
+export default Activity;
