@@ -6,7 +6,7 @@
   <img src="/background.jpg"
     alt=""
     class="fixed left-0 top-0 w-full h-full object-cover" />
-  <div class="overlay fixed w-full h-full bg-[#040711] opacity-70"></div>
+  <div class="overlay fixed w-full h-full bg-[#100f0b] opacity-70"></div>
   <div class="page-home page relative">
     <div class="container relative min-h-[100vh] flex items-center">
       <div class="container__inner w-full relative">
@@ -83,6 +83,7 @@
     </div>
   </div>
   {% include './components/dice-roll/dice-roll.njk' %}
+  {% include './components/settings/settings.njk' %}
   <script>
     const DATA = {{ DATA|dump|safe }};
   </script>
