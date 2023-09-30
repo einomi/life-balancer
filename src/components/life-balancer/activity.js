@@ -20,7 +20,8 @@ class Activity {
       document.querySelector(`[data-activity="${data.id}"]`)
     );
     if (!this.element) {
-      throw new Error(`Element with data-activity="${data.id}" not found`);
+      console.error(`Element with data-activity="${data.id}" not found`);
+      return;
     }
     this.valuesElement = /** @type {HTMLElement} */ (
       this.element.querySelector('[data-values]')

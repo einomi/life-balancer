@@ -10,6 +10,9 @@ import '../inventory/inventory';
 class LifeBalancer {
   constructor() {
     this.handleActivitiesData();
+    this.activitiesContainer = /** @type {HTMLElement} */ (
+      document.querySelector('[data-activities]')
+    );
 
     this.activitiesData =
       /** @type {Array<import('./activity-type').ActivityType>} */ (
@@ -25,7 +28,15 @@ class LifeBalancer {
     const totalHoursElement = /** @type {HTMLElement} */ (
       document.querySelector('[data-total-sessions]')
     );
-    totalHoursElement.textContent = String(totalHours);
+    totalHoursElement.textContent = Number.isNaN(totalHours)
+      ? 0
+      : String(totalHours);
+
+    this.activityTemplate = /** @type {HTMLTemplateElement} */ (
+      document.querySelector('#activity-template')
+    );
+
+    this.renderActivities();
   }
 
   handleActivitiesData() {
@@ -47,7 +58,9 @@ class LifeBalancer {
   }
 
   getActivitiesData() {
-    return localStorage.getItem(LOCAL_STORAGE_ACTIVITIES_KEY) || [];
+    return JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_ACTIVITIES_KEY) || '[]'
+    );
   }
 
   getActivitiesWithValues() {
@@ -65,6 +78,19 @@ class LifeBalancer {
         return item;
       }
       return acc;
+    });
+  }
+
+  renderActivities() {
+    this.activities.forEach((activity) => {
+      // clone template
+      const activityElement = this.activityTemplate.content.cloneNode(true);
+
+      // set activity name
+      const activityNameElement = activityElement.querySelector('[data-title]');
+      activityNameElement.textContent = activity.title;
+
+      this.activitiesContainer.appendChild(activityElement);
     });
   }
 }
