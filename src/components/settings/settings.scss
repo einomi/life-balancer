@@ -7,6 +7,8 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+  opacity: 0;
 
   &__box {
     position: relative;

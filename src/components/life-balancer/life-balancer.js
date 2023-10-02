@@ -6,6 +6,7 @@ import Activity from './activity';
 import '../money/money';
 import '../shop/shop';
 import '../inventory/inventory';
+import '../settings/settings';
 
 class LifeBalancer {
   constructor() {
