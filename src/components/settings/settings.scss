@@ -9,6 +9,7 @@
   justify-content: center;
   opacity: 0;
   visibility: hidden;
+  will-change: opacity, visibility;
 
   &__box {
     position: relative;
