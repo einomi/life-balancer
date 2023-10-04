@@ -30,11 +30,14 @@ class LifeBalancer {
       document.querySelector('[data-total-sessions]')
     );
     totalHoursElement.textContent = Number.isNaN(totalHours)
-      ? 0
+      ? '0'
       : String(totalHours);
 
     this.activityTemplate = /** @type {HTMLTemplateElement} */ (
       document.querySelector('#activity-template')
+    );
+    this.valueTemplate = /** @type {HTMLTemplateElement} */ (
+      document.querySelector('#value-template')
     );
 
     this.renderActivities();
@@ -85,11 +88,24 @@ class LifeBalancer {
   renderActivities() {
     this.activities.forEach((activity) => {
       // clone template
-      const activityElement = this.activityTemplate.content.cloneNode(true);
+      const activityElement = /** @type {HTMLElement} */ (
+        this.activityTemplate.content.cloneNode(true)
+      );
 
       // set activity name
-      const activityNameElement = activityElement.querySelector('[data-title]');
+      const activityNameElement = /** @type {HTMLElement} */ (
+        activityElement.querySelector('[data-title]')
+      );
       activityNameElement.textContent = activity.title;
+
+      const valuesContainer = /** @type HTMLElement */ (
+        activityElement.querySelector('[data-values]')
+      );
+
+      new Array(activity.sessions).fill(null).forEach(() => {
+        const valueElement = this.valueTemplate.content.cloneNode(true);
+        valuesContainer.appendChild(valueElement);
+      });
 
       this.activitiesContainer.appendChild(activityElement);
     });

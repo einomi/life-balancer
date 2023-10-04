@@ -14,6 +14,8 @@ class Activity {
    */
   constructor(data) {
     this.id = data.id;
+    this.title = data.title;
+    this.sessions = data.sessions;
     this.value = 0;
 
     this.element = /** @type {HTMLElement} */ (
