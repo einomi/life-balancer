@@ -20,8 +20,6 @@ class LifeBalancer {
         this.getActivitiesData()
       );
 
-    this.activities = this.activitiesData.map((item) => new Activity(item));
-
     const totalHours = this.activitiesData.reduce(
       (acc, item) => acc + item.sessions,
       0
@@ -86,7 +84,7 @@ class LifeBalancer {
   }
 
   renderActivities() {
-    this.activities.forEach((activity) => {
+    this.activitiesData.forEach((activity) => {
       // clone template
       const activityElement = /** @type {HTMLElement} */ (
         this.activityTemplate.content.cloneNode(true)
@@ -106,6 +104,8 @@ class LifeBalancer {
         const valueElement = this.valueTemplate.content.cloneNode(true);
         valuesContainer.appendChild(valueElement);
       });
+
+      new Activity(activity, activityElement);
 
       this.activitiesContainer.appendChild(activityElement);
     });

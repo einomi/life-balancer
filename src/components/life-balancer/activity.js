@@ -8,19 +8,39 @@ import {
 const CLICK_SOUND = '/click.wav';
 const clickAudio = new Audio(CLICK_SOUND);
 
+/**
+ * @typedef {object} ActivityType
+ * @property {string} id - The ID of the activity.
+ * @property {string} title - The title of the activity.
+ * @property {number} sessions - The sessions of the activity.
+ * @property {number} value - The value associated with the activity.
+ * @property {HTMLElement} element - The HTML element associated with the activity.
+ * @property {HTMLElement} valuesElement - The HTML element containing values for the activity.
+ * @property {HTMLElement} buttonPlus - The HTML button for incrementing the activity value.
+ * @property {HTMLElement} buttonMinus - The HTML button for decrementing the activity value.
+ * @property {HTMLElement} diceButton - The HTML button for rolling a dice.
+ * @method {Function} addEvents - Add event listeners for buttons.
+ * @method {Function} playClickSound - Play a click sound.
+ * @method {Function} increment - Increment the activity value.
+ * @method {Function} saveStateToLocalStorage - Save the activity state to local storage.
+ * @method {Function} decrement - Decrement the activity value.
+ * @method {Function} onUpdate - Update the UI based on the activity value.
+ * @param {ActivityType} data - The data for the activity.
+ */
+
+/** @type {ActivityType} */
 class Activity {
   /**
    * @param {import('./activity-type').ActivityType} data
+   * @param {HTMLElement} element
    */
-  constructor(data) {
+  constructor(data, element) {
     this.id = data.id;
     this.title = data.title;
     this.sessions = data.sessions;
     this.value = 0;
 
-    this.element = /** @type {HTMLElement} */ (
-      document.querySelector(`[data-activity="${data.id}"]`)
-    );
+    this.element = element;
     if (!this.element) {
       console.error(`Element with data-activity="${data.id}" not found`);
       return;
@@ -86,6 +106,10 @@ class Activity {
     playSound(clickAudio);
   }
 
+  saveStateToLocalStorage() {
+    setActivityValueToStorage(this.id, this.value);
+  }
+
   increment() {
     if (this.value >= this.valuesElement.children.length) {
       return;
@@ -94,10 +118,6 @@ class Activity {
     this.saveStateToLocalStorage();
 
     this.onUpdate();
-  }
-
-  saveStateToLocalStorage() {
-    setActivityValueToStorage(this.id, this.value);
   }
 
   decrement() {
