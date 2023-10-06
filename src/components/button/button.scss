@@ -2,25 +2,29 @@
   @include button-reset;
   @extend .transition-active;
   display: flex;
-  height: 54px;
+  min-width: 140px;
+  height: 48px;
   align-items: center;
   justify-content: center;
-  padding: 1px 20px 0;
-  border: 2px solid rgba(#000, 0.3);
+  padding: 0 10px;
+  border: 2px solid #363126;
+  background-color: #101010;
+  border-radius: 4px;
+  color: #b6afa0;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.5px;
 
   &:hover {
-    background-color: rgba(#000, 0.3);
-    color: rgba(#000, 0.8);
+    background-color: #121212;
+    //color: rgba(#000, 0.8);
     transition: none;
   }
 
   &:active {
-    border-color: rgba(#000, 0.25);
-    background-color: rgba(#000, 0.25);
+    border-color: rgba(#363126, 0.9);
+    background-color: rgba(#121212, 0.9);
 
     .button__chevron-right {
       transform: translateX(1px);

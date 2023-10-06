@@ -7,16 +7,18 @@ class Settings {
     );
     this.boxElement = this.popupElement.querySelector('[data-settings-box]');
     this.settingsButton = document.querySelector('[data-settings-button]');
-    this.closeButton = document.querySelector('[data-settings-close]');
+    this.closeButtons = document.querySelectorAll('[data-settings-close]');
 
     this.settingsButton?.addEventListener('click', (event) => {
       event.stopPropagation();
       this.open();
     });
 
-    this.closeButton?.addEventListener('click', (event) => {
-      event.stopPropagation();
-      this.close();
+    this.closeButtons?.forEach((closeButton) => {
+      closeButton?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        this.close();
+      });
     });
 
     document.addEventListener(
@@ -31,6 +33,8 @@ class Settings {
     );
 
     this.isOpened = false;
+
+    this.open();
   }
 
   open() {

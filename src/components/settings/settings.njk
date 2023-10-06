@@ -1,14 +1,33 @@
+{% from '../button/button.njk' import button %}
+
 <div class="settings" data-settings>
-  <div class="settings__box" data-settings-box>
+  <div class="settings__box flex flex-col" data-settings-box>
     <button class="settings__close" data-settings-close>
       <img width="32" height="32" src="/close.png" alt="" />
     </button>
-    <h2 class="settings__title">
-      Settings
-    </h2>
-    <div class="settings__content">
-      <div class="settings__heading">
-        Activities
+    <div class="settings__box-inner h-full flex flex-grow flex-col items-center">
+      <h2 class="settings__title">
+        Settings
+      </h2>
+      <div class="settings__content h-full flex-grow">
+        <div class="settings__heading">
+          Activities
+        </div>
+      </div>
+      <div class="buttons flex justify-center space-x-5">
+        {{
+          button({
+            children: 'Cancel',
+            class: 'settings__button',
+            attributes: 'data-settings-close'
+          })
+        }}
+        {{
+          button({
+            children: 'Save',
+            class: 'settings__button'
+          })
+        }}
       </div>
     </div>
   </div>
