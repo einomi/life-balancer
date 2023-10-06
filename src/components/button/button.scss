@@ -37,4 +37,8 @@
     transition: transform 0.1s ease-out,
       fill $default-transition-duration $default-transition-function;
   }
+
+  &._cancel {
+    background-color: #232320;
+  }
 }

@@ -1,5 +1,8 @@
 import gsap from 'gsap';
 
+import { emitter } from '../../js/emitter';
+import { getActivitiesData } from '../../js/utils/get-activities-data';
+
 class Settings {
   constructor() {
     this.popupElement = /** @type {HTMLElement} */ (
@@ -8,6 +11,9 @@ class Settings {
     this.boxElement = this.popupElement.querySelector('[data-settings-box]');
     this.settingsButton = document.querySelector('[data-settings-button]');
     this.closeButtons = document.querySelectorAll('[data-settings-close]');
+    this.activitiesContainer = this.popupElement.querySelector(
+      '[data-settings-activities]'
+    );
 
     this.settingsButton?.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -31,6 +37,10 @@ class Settings {
         }
       }
     );
+
+    emitter.on('activitiesDataInitialized', () => {
+      this.renderActivities();
+    });
 
     this.isOpened = false;
 
@@ -65,6 +75,21 @@ class Settings {
       y: 35,
     });
     this.isOpened = false;
+  }
+
+  renderActivities() {
+    const data = getActivitiesData();
+    data.forEach((activity) => {
+      const activityElement = document.createElement('div');
+      activityElement.classList.add('settings__activity');
+      activityElement.innerHTML = `
+        <div class="settings__activity settings-activity flex space-x-5">
+            <div class="settings__activity-name"><span class="settings__activity-highlight">Title:</span> ${activity.title}</div>
+            <div class="settings__activity-sessions"><span class="settings__activity-highlight">Sessions:</span> ${activity.sessions}</div>
+        </div>
+      `;
+      this.activitiesContainer.appendChild(activityElement);
+    });
   }
 }
 

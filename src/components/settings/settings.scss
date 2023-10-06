@@ -39,11 +39,20 @@
   }
 
   &__content {
-    text-align: left;
+    text-align: center;
   }
 
   &__heading {
+    margin-bottom: 14px;
     color: #999;
     font-size: 28px;
+  }
+
+  &__activity {
+    font-size: 20px;
+  }
+
+  &__activity-highlight {
+    color: #7a6953;
   }
 }

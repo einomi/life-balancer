@@ -1,23 +1,24 @@
 import { getActivityValueFromStorage } from '../../js/utils/get-activity-value-from-storage';
 import { LOCAL_STORAGE_ACTIVITIES_KEY } from '../../js/utils/constants';
-
-import Activity from './activity';
-
 import '../money/money';
 import '../shop/shop';
 import '../inventory/inventory';
 import '../settings/settings';
+import { emitter } from '../../js/emitter';
+import { getActivitiesData } from '../../js/utils/get-activities-data';
+
+import Activity from './activity';
 
 class LifeBalancer {
   constructor() {
-    this.handleActivitiesData();
+    this.initActivitiesData();
     this.activitiesContainer = /** @type {HTMLElement} */ (
       document.querySelector('[data-activities]')
     );
 
     this.activitiesData =
       /** @type {Array<import('./activity-type').ActivityType>} */ (
-        this.getActivitiesData()
+        getActivitiesData()
       );
 
     const totalHours = this.activitiesData.reduce(
@@ -41,7 +42,7 @@ class LifeBalancer {
     this.renderActivities();
   }
 
-  handleActivitiesData() {
+  initActivitiesData() {
     const localStorageData = localStorage.getItem(LOCAL_STORAGE_ACTIVITIES_KEY);
     if (!localStorageData) {
       localStorage.setItem(
@@ -49,6 +50,8 @@ class LifeBalancer {
         JSON.stringify(this.getDefaultActivitiesData())
       );
     }
+
+    emitter.emit('activitiesDataInitialized');
   }
 
   getDefaultActivitiesData() {
@@ -56,12 +59,6 @@ class LifeBalancer {
       // @ts-ignore
       // eslint-disable-next-line no-undef
       DATA.activities
-    );
-  }
-
-  getActivitiesData() {
-    return JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_ACTIVITIES_KEY) || '[]'
     );
   }
 

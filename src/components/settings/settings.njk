@@ -13,19 +13,20 @@
         <div class="settings__heading">
           Activities
         </div>
+        <div data-settings-activities class="space-y-1"></div>
       </div>
       <div class="buttons flex justify-center space-x-5">
         {{
           button({
             children: 'Cancel',
-            class: 'settings__button',
+            className: 'settings__button _cancel',
             attributes: 'data-settings-close'
           })
         }}
         {{
           button({
             children: 'Save',
-            class: 'settings__button'
+            className: 'settings__button'
           })
         }}
       </div>
