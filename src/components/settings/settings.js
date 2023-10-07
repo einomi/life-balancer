@@ -83,12 +83,20 @@ class Settings {
       const activityElement = document.createElement('div');
       activityElement.classList.add('settings__activity');
       activityElement.innerHTML = `
-        <div class="settings__activity settings-activity flex space-x-5">
+        <div class="settings__activity-inner flex space-x-5 items-center relative">
             <div class="settings__activity-name"><span class="settings__activity-highlight">Title:</span> ${activity.title}</div>
             <div class="settings__activity-sessions"><span class="settings__activity-highlight">Sessions:</span> ${activity.sessions}</div>
+            <div class="settings__activity-buttons absolute right-0 flex items-center space-x-2">
+              <button class="settings__activity-button">
+                  <img width="16" src="/pen.svg" alt="">
+              </button>
+              <button class="settings__activity-button _danger">
+                  <img width="16" src="/cross.svg" alt="">
+              </button>
+            </div>
         </div>
       `;
-      this.activitiesContainer.appendChild(activityElement);
+      this.activitiesContainer?.appendChild(activityElement);
     });
   }
 }
