@@ -13,9 +13,8 @@
 
   &__box {
     position: relative;
-    width: 55%;
-    min-width: 700px;
-    min-height: 500px;
+    width: 30%;
+    min-width: 600px;
     padding: 30px 60px;
     border: 3px solid #312e24;
     background-color: #111;
@@ -45,7 +44,7 @@
   &__heading {
     margin-bottom: 14px;
     color: #999;
-    font-size: 28px;
+    font-size: 24px;
   }
 
   &__activity {
@@ -75,5 +74,9 @@
     &._danger {
       background-color: #3f2121;
     }
+  }
+
+  &__buttons {
+    margin-top: 55px;
   }
 }
