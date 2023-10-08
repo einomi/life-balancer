@@ -14,6 +14,9 @@ class Settings {
     this.activitiesContainer = this.popupElement.querySelector(
       '[data-settings-activities]'
     );
+    this.activityTemplate = /** @type {HTMLTemplateElement} */ (
+      document.getElementById('settings-activity-template')
+    );
 
     this.settingsButton?.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -90,13 +93,25 @@ class Settings {
               <button class="settings__activity-button">
                   <img width="16" src="/pen.svg" alt="">
               </button>
-              <button class="settings__activity-button _danger">
+              <button class="settings__activity-button _danger" data-settings-activity-remove>
                   <img width="16" src="/cross.svg" alt="">
               </button>
             </div>
         </div>
       `;
       this.activitiesContainer?.appendChild(activityElement);
+      const buttonRemove = /** @type {HTMLButtonElement} */ (
+        activityElement.querySelector('[data-settings-activity-remove]')
+      );
+      buttonRemove?.addEventListener(
+        'click',
+        /** @param {MouseEvent} event */ (event) => {
+          event.preventDefault();
+          // TODO: refactor, remove confirm
+          // eslint-disable-next-line no-alert
+          confirm('Are you sure you want to remove this activity?');
+        }
+      );
     });
   }
 }
