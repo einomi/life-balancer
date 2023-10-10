@@ -11,8 +11,8 @@ class Settings {
     this.boxElement = this.popupElement.querySelector('[data-settings-box]');
     this.settingsButton = document.querySelector('[data-settings-button]');
     this.closeButtons = document.querySelectorAll('[data-settings-close]');
-    this.activitiesContainer = this.popupElement.querySelector(
-      '[data-settings-activities]'
+    this.activitiesContainer = /** @type {HTMLElement} */ (
+      this.popupElement.querySelector('[data-settings-activities]')
     );
     this.activityTemplate = /** @type {HTMLTemplateElement} */ (
       document.getElementById('settings-activity-template')
@@ -42,6 +42,10 @@ class Settings {
     );
 
     emitter.on('activitiesDataInitialized', () => {
+      this.renderActivities();
+    });
+
+    emitter.on('activities:rerender', () => {
       this.renderActivities();
     });
 
@@ -81,6 +85,7 @@ class Settings {
   }
 
   renderActivities() {
+    this.activitiesContainer.innerHTML = '';
     const data = getActivitiesData();
     data.forEach((activity) => {
       const activityElement = document.createElement('div');
@@ -99,7 +104,7 @@ class Settings {
             </div>
         </div>
       `;
-      this.activitiesContainer?.appendChild(activityElement);
+      this.activitiesContainer.appendChild(activityElement);
       const buttonRemove = /** @type {HTMLButtonElement} */ (
         activityElement.querySelector('[data-settings-activity-remove]')
       );
@@ -109,7 +114,14 @@ class Settings {
           event.preventDefault();
           // TODO: refactor, remove confirm
           // eslint-disable-next-line no-alert
-          confirm('Are you sure you want to remove this activity?');
+          const confirmed = confirm(
+            'Are you sure you want to remove this activity?'
+          );
+
+          if (confirmed) {
+            emitter.emit('activity:remove', activity.id);
+            emitter.emit('activities:rerender');
+          }
         }
       );
     });

@@ -39,6 +39,14 @@ class LifeBalancer {
       document.querySelector('#value-template')
     );
 
+    emitter.on('activity:remove', (id) => {
+      this.removeActivity(id);
+    });
+
+    emitter.on('activities:rerender', () => {
+      this.renderActivities();
+    });
+
     this.renderActivities();
   }
 
@@ -80,7 +88,17 @@ class LifeBalancer {
     });
   }
 
+  /** @param {string} id */
+  removeActivity(id) {
+    this.activitiesData = this.activitiesData.filter((item) => item.id !== id);
+    localStorage.setItem(
+      LOCAL_STORAGE_ACTIVITIES_KEY,
+      JSON.stringify(this.activitiesData)
+    );
+  }
+
   renderActivities() {
+    this.activitiesContainer.innerHTML = '';
     this.activitiesData.forEach((activity) => {
       // clone template
       const activityElement = /** @type {HTMLElement} */ (

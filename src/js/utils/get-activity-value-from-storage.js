@@ -1,8 +1,8 @@
-export const ACTIVITIES_LOCAL_STORAGE_KEY = 'life-balancer.activity-value';
+import { LOCAL_STORAGE_ACTIVITY_VALUE_KEY } from './constants';
 
 /** @param {string} id */
 function getKeyWithId(id) {
-  return `${ACTIVITIES_LOCAL_STORAGE_KEY}.${id}`;
+  return `${LOCAL_STORAGE_ACTIVITY_VALUE_KEY}.${id}`;
 }
 
 /** @param {string} id */
