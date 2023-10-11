@@ -1,0 +1,14 @@
+.square-button {
+  @include button-reset;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #342f24;
+  border-radius: 2px;
+
+  &._danger {
+    background-color: #3f2121;
+  }
+}

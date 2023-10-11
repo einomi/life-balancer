@@ -54,26 +54,31 @@
   &__activity-inner {
     position: relative;
     padding-right: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__activity-cell {
+    max-width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:first-child {
+      max-width: 125px;
+    }
   }
 
   &__activity-highlight {
     color: #7a6953;
   }
 
-  &__activity-button {
-    @include button-reset;
+  &__button-activity {
     @include hover-default;
-    display: flex;
-    width: 20px;
-    height: 20px;
-    align-items: center;
-    justify-content: center;
-    background-color: #342f24;
-    border-radius: 2px;
+  }
 
-    &._danger {
-      background-color: #3f2121;
-    }
+  &__button-add {
+    @include hover-default;
   }
 
   &__buttons {

@@ -14,9 +14,6 @@ class Settings {
     this.activitiesContainer = /** @type {HTMLElement} */ (
       this.popupElement.querySelector('[data-settings-activities]')
     );
-    this.activityTemplate = /** @type {HTMLTemplateElement} */ (
-      document.getElementById('settings-activity-template')
-    );
 
     this.settingsButton?.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -92,16 +89,17 @@ class Settings {
       activityElement.classList.add('settings__activity');
       activityElement.innerHTML = `
         <div class="settings__activity-inner flex space-x-5 items-center relative">
-            <div class="settings__activity-name"><span class="settings__activity-highlight">Title:</span> ${activity.title}</div>
-            <div class="settings__activity-sessions"><span class="settings__activity-highlight">Sessions:</span> ${activity.sessions}</div>
-            <div class="settings__activity-buttons absolute right-0 flex items-center space-x-2">
-              <button class="settings__activity-button">
-                  <img width="16" src="/pen.svg" alt="">
-              </button>
-              <button class="settings__activity-button _danger" data-settings-activity-remove>
-                  <img width="16" src="/cross.svg" alt="">
-              </button>
-            </div>
+          <div class="settings__activity-cell"><span class="settings__activity-highlight">ID:</span> <span class="settings__activity-value">${activity.id}</span></div>
+          <div class="settings__activity-cell"><span class="settings__activity-highlight">Title:</span> <span class="settings__activity-value">${activity.title}</span></div>
+          <div class="settings__activity-cell"><span class="settings__activity-highlight">Sessions:</span> <span class="settings__activity-value">${activity.sessions}</span></div>
+          <div class="settings__activity-buttons absolute right-0 flex items-center space-x-2">
+            <button class="settings__button-activity square-button">
+              <img width="16" src="/pen.svg" alt="">
+            </button>
+            <button class="settings__button-activity square-button _danger" data-settings-activity-remove>
+              <img width="16" src="/cross.svg" alt="">
+            </button>
+          </div>
         </div>
       `;
       this.activitiesContainer.appendChild(activityElement);
