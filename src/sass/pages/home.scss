@@ -1,4 +1,8 @@
 .page-home {
+  &__container {
+    padding: 50px 0;
+  }
+
   &__title {
     margin-bottom: 60px;
   }
