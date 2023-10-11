@@ -3,7 +3,8 @@ import { LOCAL_STORAGE_ACTIVITIES_KEY } from '../../js/utils/constants';
 import '../money/money';
 import '../shop/shop';
 import '../inventory/inventory';
-import '../settings/settings';
+import '../popup/popup';
+import '../settings-popup/settings-popup';
 import { emitter } from '../../js/emitter';
 import { getActivitiesData } from '../../js/utils/get-activities-data';
 

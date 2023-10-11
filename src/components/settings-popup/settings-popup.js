@@ -1,41 +1,13 @@
-import gsap from 'gsap';
-
 import { emitter } from '../../js/emitter';
 import { getActivitiesData } from '../../js/utils/get-activities-data';
 
-class Settings {
+class SettingsPopup {
   constructor() {
-    this.popupElement = /** @type {HTMLElement} */ (
-      document.querySelector('[data-settings]')
+    this.element = /** @type {HTMLElement} */ (
+      document.querySelector('[data-popup="settings"]')
     );
-    this.boxElement = this.popupElement.querySelector('[data-settings-box]');
-    this.settingsButton = document.querySelector('[data-settings-button]');
-    this.closeButtons = document.querySelectorAll('[data-settings-close]');
     this.activitiesContainer = /** @type {HTMLElement} */ (
-      this.popupElement.querySelector('[data-settings-activities]')
-    );
-
-    this.settingsButton?.addEventListener('click', (event) => {
-      event.stopPropagation();
-      this.open();
-    });
-
-    this.closeButtons?.forEach((closeButton) => {
-      closeButton?.addEventListener('click', (event) => {
-        event.stopPropagation();
-        this.close();
-      });
-    });
-
-    document.addEventListener(
-      'click',
-      /** @param {MouseEvent} event */ (event) => {
-        event.stopPropagation();
-        // @ts-ignore
-        if (this.isOpened && !this.boxElement.contains(event.target)) {
-          this.close();
-        }
-      }
+      this.element.querySelector('[data-settings-activities]')
     );
 
     emitter.on('activitiesDataInitialized', () => {
@@ -45,40 +17,6 @@ class Settings {
     emitter.on('activities:rerender', () => {
       this.renderActivities();
     });
-
-    this.isOpened = false;
-
-    this.open();
-  }
-
-  open() {
-    if (this.isOpened) {
-      return;
-    }
-    gsap.fromTo(
-      this.popupElement,
-      { y: 20 },
-      {
-        y: 0,
-        duration: 0.35,
-        autoAlpha: 1,
-        ease: 'sine.out',
-      }
-    );
-    this.isOpened = true;
-  }
-
-  close() {
-    if (!this.isOpened) {
-      return;
-    }
-    gsap.to(this.popupElement, {
-      duration: 0.3,
-      autoAlpha: 0,
-      ease: 'power2.out',
-      y: 35,
-    });
-    this.isOpened = false;
   }
 
   renderActivities() {
@@ -93,7 +31,7 @@ class Settings {
           <div class="popup__activity-cell"><span class="popup__activity-highlight">Title:</span> <span class="popup__activity-value">${activity.title}</span></div>
           <div class="popup__activity-cell"><span class="popup__activity-highlight">Sessions:</span> <span class="popup__activity-value">${activity.sessions}</span></div>
           <div class="popup__activity-buttons absolute right-0 flex items-center space-x-2">
-            <button class="popup__button-activity square-button">
+            <button class="popup__button-activity square-button" data-popup-open="activity-edit">
               <img width="16" src="/pen.svg" alt="">
             </button>
             <button class="popup__button-activity square-button _danger" data-settings-activity-remove>
@@ -126,4 +64,4 @@ class Settings {
   }
 }
 
-new Settings();
+new SettingsPopup();

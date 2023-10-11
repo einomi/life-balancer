@@ -1,8 +1,8 @@
 {% from '../button/button.njk' import button %}
 
-<div class="popup" data-settings>
-  <div class="popup__box flex flex-col" data-settings-box>
-    <button class="popup__close" data-settings-close>
+<div class="popup" data-popup="settings">
+  <div class="popup__box flex flex-col" data-popup-box>
+    <button class="popup__close" data-popup-close>
       <img width="32" height="32" src="/close.png" alt="" />
     </button>
     <div class="popup__box-inner h-full flex flex-grow flex-col items-center">
@@ -26,7 +26,7 @@
           button({
             children: 'Cancel',
             className: 'popup__button _cancel',
-            attributes: 'data-settings-close'
+            attributes: 'data-popup-close'
           })
         }}
         {{
