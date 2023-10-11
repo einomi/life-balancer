@@ -1,0 +1,10 @@
+{% macro tooltip(props) %}
+  <span class="tooltip" data-tooltip>
+    <span class="tooltip__description" data-tooltip-description>
+      {{ props.description|safe }}
+    </span>
+    <span class="tooltip__price">
+      Price: <span data-tooltip-price>{{ props.price }}</span>
+    </span>
+  </span>
+{% endmacro %}

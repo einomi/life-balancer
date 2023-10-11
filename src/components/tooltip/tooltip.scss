@@ -1,0 +1,29 @@
+.tooltip {
+  @include hover-default;
+  position: absolute;
+  z-index: 1;
+  bottom: 50%;
+  left: 50%;
+  width: 176px;
+  padding: 8px;
+  border: 1px solid rgba(#fff, 0.2);
+  background-color: #111;
+  opacity: 0;
+  text-align: center;
+  transform: translateX(-50%);
+  transition-duration: 0.15s;
+  visibility: hidden;
+
+  &__price,
+  &__description {
+    display: block;
+  }
+
+  &__price {
+    color: #f5cf72;
+  }
+
+  &[data-disabled='true'] {
+    display: none;
+  }
+}

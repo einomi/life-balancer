@@ -1,4 +1,4 @@
-{% from '../popup/popup.njk' import popup %}
+{% from '../tooltip/tooltip.njk' import tooltip %}
 
 {% macro inventoryCell(props) %}
   <div class="inventory__cell inventory-cell" data-inventory-cell>
@@ -6,7 +6,7 @@
       <img src="/shop/{{ props.id }}.png" alt="" />
     {% endif %}
     {{
-      popup({
+      tooltip({
         description: '',
         price: ''
       })

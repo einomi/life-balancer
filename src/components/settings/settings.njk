@@ -1,38 +1,38 @@
 {% from '../button/button.njk' import button %}
 
-<div class="settings" data-settings>
-  <div class="settings__box flex flex-col" data-settings-box>
-    <button class="settings__close" data-settings-close>
+<div class="popup" data-settings>
+  <div class="popup__box flex flex-col" data-settings-box>
+    <button class="popup__close" data-settings-close>
       <img width="32" height="32" src="/close.png" alt="" />
     </button>
-    <div class="settings__box-inner h-full flex flex-grow flex-col items-center">
-      <h2 class="settings__title">
+    <div class="popup__box-inner h-full flex flex-grow flex-col items-center">
+      <h2 class="popup__title">
         Settings
       </h2>
-      <div class="settings__content h-full flex-grow">
-        <div class="settings__heading">
+      <div class="popup__content h-full flex-grow">
+        <div class="popup__heading">
           Activities
         </div>
         <div data-settings-activities class="space-y-1"></div>
       </div>
-      <button class="settings__button-add flex items-center space-x-2 mt-5">
+      <button class="popup__button-add flex items-center space-x-2 mt-5">
         <span class="square-button">
           <img width="16" src="/plus.svg" alt="" />
         </span>
         <span>Add new</span>
       </button>
-      <div class="settings__buttons flex justify-center space-x-5">
+      <div class="popup__buttons flex justify-center space-x-5">
         {{
           button({
             children: 'Cancel',
-            className: 'settings__button _cancel',
+            className: 'popup__button _cancel',
             attributes: 'data-settings-close'
           })
         }}
         {{
           button({
             children: 'Save',
-            className: 'settings__button'
+            className: 'popup__button'
           })
         }}
       </div>

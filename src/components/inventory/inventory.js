@@ -64,10 +64,10 @@ class Inventory {
       if (imgElement) {
         imgElement.remove();
       }
-      const popupElement = /** @type {HTMLElement} */ (
-        element.querySelector('[data-popup]')
+      const tooltipElement = /** @type {HTMLElement} */ (
+        element.querySelector('[data-tooltip]')
       );
-      popupElement.dataset.disabled = 'true';
+      tooltipElement.dataset.disabled = 'true';
       element.dataset.empty = 'true';
     });
 
@@ -82,16 +82,16 @@ class Inventory {
       if (!itemData) {
         throw new Error(`Item with id ${id} not found`);
       }
-      const popupElement = /** @type {HTMLElement} */ (
-        element.querySelector('[data-popup]')
+      const tooltipElement = /** @type {HTMLElement} */ (
+        element.querySelector('[data-tooltip]')
       );
-      popupElement.dataset.disabled = 'false';
+      tooltipElement.dataset.disabled = 'false';
       const descriptionElement = /** @type {HTMLElement} */ (
-        popupElement.querySelector('[data-popup-description]')
+        tooltipElement.querySelector('[data-tooltip-description]')
       );
       descriptionElement.innerHTML = itemData.description;
       const priceElement = /** @type {HTMLElement} */ (
-        popupElement.querySelector('[data-popup-price]')
+        tooltipElement.querySelector('[data-tooltip-price]')
       );
       priceElement.textContent = String(itemData.price);
 

@@ -1,4 +1,4 @@
-{% from '../popup/popup.njk' import popup %}
+{% from '../tooltip/tooltip.njk' import tooltip %}
 
 {% macro shopItem(props) %}
   <button class="shop-item"
@@ -6,6 +6,6 @@
     data-id="{{ props.id }}"
     data-price="{{ props.price }}">
     <img class="shop-item__image" src="/shop/{{ props.id }}.png" alt="" />
-    {{ popup(props) }}
+    {{ tooltip(props) }}
   </button>
 {% endmacro %}

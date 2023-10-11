@@ -88,15 +88,15 @@ class Settings {
       const activityElement = document.createElement('div');
       activityElement.classList.add('settings__activity');
       activityElement.innerHTML = `
-        <div class="settings__activity-inner flex space-x-5 items-center relative">
-          <div class="settings__activity-cell"><span class="settings__activity-highlight">ID:</span> <span class="settings__activity-value">${activity.id}</span></div>
-          <div class="settings__activity-cell"><span class="settings__activity-highlight">Title:</span> <span class="settings__activity-value">${activity.title}</span></div>
-          <div class="settings__activity-cell"><span class="settings__activity-highlight">Sessions:</span> <span class="settings__activity-value">${activity.sessions}</span></div>
-          <div class="settings__activity-buttons absolute right-0 flex items-center space-x-2">
-            <button class="settings__button-activity square-button">
+        <div class="popup__activity-inner flex space-x-5 items-center relative">
+          <div class="popup__activity-cell"><span class="popup__activity-highlight">ID:</span> <span class="popup__activity-value">${activity.id}</span></div>
+          <div class="popup__activity-cell"><span class="popup__activity-highlight">Title:</span> <span class="popup__activity-value">${activity.title}</span></div>
+          <div class="popup__activity-cell"><span class="popup__activity-highlight">Sessions:</span> <span class="popup__activity-value">${activity.sessions}</span></div>
+          <div class="popup__activity-buttons absolute right-0 flex items-center space-x-2">
+            <button class="popup__button-activity square-button">
               <img width="16" src="/pen.svg" alt="">
             </button>
-            <button class="settings__button-activity square-button _danger" data-settings-activity-remove>
+            <button class="popup__button-activity square-button _danger" data-settings-activity-remove>
               <img width="16" src="/cross.svg" alt="">
             </button>
           </div>
