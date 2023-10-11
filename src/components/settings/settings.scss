@@ -53,16 +53,16 @@
 
   &__activity-inner {
     position: relative;
-    padding-right: 70px;
     flex-wrap: wrap;
     justify-content: center;
+    padding-right: 70px;
   }
 
   &__activity-cell {
-    max-width: 190px;
-    white-space: nowrap;
     overflow: hidden;
+    max-width: 190px;
     text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:first-child {
       max-width: 125px;
