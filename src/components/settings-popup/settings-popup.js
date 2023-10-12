@@ -40,10 +40,12 @@ class SettingsPopup {
           </div>
         </div>
       `;
+
       this.activitiesContainer.appendChild(activityElement);
       const buttonRemove = /** @type {HTMLButtonElement} */ (
         activityElement.querySelector('[data-settings-activity-remove]')
       );
+
       buttonRemove?.addEventListener(
         'click',
         /** @param {MouseEvent} event */ (event) => {
@@ -61,6 +63,8 @@ class SettingsPopup {
         }
       );
     });
+
+    emitter.emit('activities:rerendered');
   }
 }
 

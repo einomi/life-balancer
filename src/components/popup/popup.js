@@ -1,25 +1,22 @@
 import gsap from 'gsap';
 
+import { emitter } from '../../js/emitter';
+
 class Popup {
   /**
    * @param {HTMLElement} element
    * @param {string} id
+   * @param {NodeListOf<HTMLElement>} popupElements
    */
-  constructor(element, id) {
+  constructor(element, id, popupElements) {
     this.element = element;
     this.id = id;
     this.boxElement = this.element.querySelector('[data-popup-box]');
-    this.openButtons = document.querySelectorAll(
-      `[data-popup-open="${this.id}"]`
-    );
     this.closeButtons = this.element.querySelectorAll('[data-popup-close]');
-
-    this.openButtons?.forEach((openButton) => {
-      openButton?.addEventListener('click', (event) => {
-        event.stopPropagation();
-        this.open();
-      });
-    });
+    this.popupElements = popupElements;
+    this.popupElementsExceptThis = Array.from(this.popupElements).filter(
+      (popupElement) => popupElement !== this.element
+    );
 
     this.closeButtons?.forEach((closeButton) => {
       closeButton?.addEventListener('click', (event) => {
@@ -33,15 +30,39 @@ class Popup {
       /** @param {MouseEvent} event */ (event) => {
         event.stopPropagation();
         // @ts-ignore
-        if (this.isOpened && !this.boxElement.contains(event.target)) {
+        if (
+          this.isOpened &&
+          event.target &&
+          !this.boxElement?.contains(event.target) &&
+          !this.popupElementsExceptThis.some((popupElement) =>
+            popupElement.contains(event.target)
+          )
+        ) {
           this.close();
         }
       }
     );
 
-    this.isOpened = false;
+    emitter.on('activities:rerendered', () => {
+      this.initOpenButtons();
+    });
 
-    this.open();
+    this.initOpenButtons();
+
+    this.isOpened = false;
+  }
+
+  initOpenButtons() {
+    delete this.openButtons;
+    this.openButtons = document.querySelectorAll(
+      `[data-popup-open="${this.id}"]`
+    );
+    this.openButtons?.forEach((openButton) => {
+      openButton?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        this.open();
+      });
+    });
   }
 
   open() {
@@ -86,7 +107,7 @@ class Popups {
       if (!id) {
         throw new Error('Popup id is not defined');
       }
-      new Popup(element, id);
+      new Popup(element, id, this.elements);
     });
   }
 }
