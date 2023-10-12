@@ -33,6 +33,20 @@ module.exports = {
   optimization: {
     minimize: IS_PRODUCTION,
   },
-  // Uncomment this section if you want to use environment variables in your JS
-  // plugins: [new webpack.EnvironmentPlugin(['STATIC_PATH'])],
+  plugins: [
+    new webpack.ProvidePlugin({
+      // eslint-disable-next-line id-length
+      h: ['preact', 'h'],
+    }),
+    // Uncomment this section if you want to use environment variables in your JS
+    // new webpack.EnvironmentPlugin(['STATIC_PATH'])
+  ],
+  resolve: {
+    alias: {
+      react: 'preact/compat',
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat', // Must be below test-utils
+      'react/jsx-runtime': 'preact/jsx-runtime',
+    },
+  },
 };

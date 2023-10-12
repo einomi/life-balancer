@@ -7,6 +7,7 @@ import '../popup/popup';
 import '../settings-popup/settings-popup';
 import { emitter } from '../../js/emitter';
 import { getActivitiesData } from '../../js/utils/get-activities-data';
+import '../activity-edit-popup/activity-edit-popup';
 
 import Activity from './activity';
 

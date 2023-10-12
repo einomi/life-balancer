@@ -16,7 +16,9 @@
     "resolveJsonModule": true,
     "watch": true,
     "lib": ["dom", "es2017"],
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   },
   "include": ["src"],
   "exclude": [

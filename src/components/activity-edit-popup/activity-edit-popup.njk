@@ -9,35 +9,7 @@
       <h2 class="popup__title">
         Edit Activity
       </h2>
-      <div>
-        <form action="">
-          <div class="activity-edit-popup__input-container">
-            <label class="activity-edit-popup__label" for="id">id</label>
-            <input class="activity-edit-popup__input"
-              id="id"
-              type="text"
-              name="id" />
-          </div>
-          <div class="activity-edit-popup__input-container">
-            <label class="activity-edit-popup__label" for="name">
-              activity name
-            </label>
-            <input class="activity-edit-popup__input"
-              id="name"
-              type="text"
-              name="name" />
-          </div>
-          <div class="activity-edit-popup__input-container">
-            <label class="activity-edit-popup__label" for="description">
-              number of sessions
-            </label>
-            <input class="activity-edit-popup__input"
-              id="description"
-              type="text"
-              name="description" />
-          </div>
-        </form>
-      </div>
+      <div data-activity-edit-form></div>
       <div class="popup__buttons flex justify-center space-x-5">
         {{
           button({

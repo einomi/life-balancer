@@ -27,6 +27,13 @@
           "utils": "./src/assets/js/utils"
         }
       }
+    ],
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "h",
+        "pragmaFrag": "Fragment"
+      }
     ]
   ]
 }
