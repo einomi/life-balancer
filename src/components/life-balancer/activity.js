@@ -11,7 +11,7 @@ const clickAudio = new Audio(CLICK_SOUND);
 /**
  * @typedef {object} ActivityType
  * @property {string} id - The ID of the activity.
- * @property {string} title - The title of the activity.
+ * @property {string} name - The name of the activity.
  * @property {number} sessions - The sessions of the activity.
  * @property {number} value - The value associated with the activity.
  * @property {HTMLElement} element - The HTML element associated with the activity.
@@ -36,7 +36,7 @@ class Activity {
    */
   constructor(data, element) {
     this.id = data.id;
-    this.title = data.title;
+    this.name = data.name;
     this.sessions = data.sessions;
     this.value = 0;
 

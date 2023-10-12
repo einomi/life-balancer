@@ -1,7 +1,7 @@
 declare const DATA: {
   activities: {
     id: string;
-    title: string;
+    name: string;
     sessions: number;
     priority_bonus: number;
   }[];

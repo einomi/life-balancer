@@ -1,6 +1,6 @@
 export type ActivityType = {
   id: string;
-  title: string;
+  name: string;
   sessions: number;
   priority_bonus: number;
 };

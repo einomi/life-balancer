@@ -108,9 +108,9 @@ class LifeBalancer {
 
       // set activity name
       const activityNameElement = /** @type {HTMLElement} */ (
-        activityElement.querySelector('[data-title]')
+        activityElement.querySelector('[data-name]')
       );
-      activityNameElement.textContent = activity.title;
+      activityNameElement.textContent = activity.name;
 
       const valuesContainer = /** @type HTMLElement */ (
         activityElement.querySelector('[data-values]')

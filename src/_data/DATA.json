@@ -2,31 +2,31 @@
   "activities": [
     {
       "id": "activity1",
-      "title": "Activity No. 1",
+      "name": "Activity No. 1",
       "sessions": 7,
       "priority_bonus": 1.2
     },
     {
       "id": "activity2",
-      "title": "Activity No. 2",
+      "name": "Activity No. 2",
       "sessions": 7,
       "priority_bonus": 1
     },
     {
       "id": "activity3",
-      "title": "Activity No. 3",
+      "name": "Activity No. 3",
       "sessions": 7,
       "priority_bonus": 1
     },
     {
       "id": "activity4",
-      "title": "Activity No. 4",
+      "name": "Activity No. 4",
       "sessions": 7,
       "priority_bonus": 1
     },
     {
       "id": "activity5",
-      "title": "Activity No. 5",
+      "name": "Activity No. 5",
       "sessions": 7,
       "priority_bonus": 1
     }
