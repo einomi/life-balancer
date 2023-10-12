@@ -1,6 +1,6 @@
 {
-  "name": "frontenso-11ty-starter",
-  "version": "1.0.0",
+  "name": "life-balancer",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "start": "npm-run-all clean gulp:svg -p dev:*",
