@@ -18,7 +18,8 @@
     "lib": ["dom", "es2017"],
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "esModuleInterop": true
   },
   "include": ["src"],
   "exclude": [

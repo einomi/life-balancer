@@ -25,6 +25,12 @@ class Popup {
       });
     });
 
+    emitter.on('popup:close', (popupId) => {
+      if (popupId === this.id) {
+        this.close();
+      }
+    });
+
     document.addEventListener(
       'click',
       /** @param {MouseEvent} event */ (event) => {

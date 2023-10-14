@@ -26,5 +26,10 @@
     &:focus-visible {
       outline: none;
     }
+
+    &._invalid {
+      border-color: #934646;
+      box-shadow: 0 0 0 1px #934646;
+    }
   }
 }
