@@ -60,8 +60,6 @@ class Popup {
     this.initOpenButtons();
 
     this.isOpened = false;
-
-    this.open();
   }
 
   initOpenButtons() {

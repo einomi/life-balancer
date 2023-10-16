@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
 
 import { emitter } from '../../js/emitter';
 import { REQUIRED_MESSAGE } from '../../js/utils/constants';
+import { getActivitiesData } from '../../js/utils/get-activities-data';
 
 const INPUT_CLASS_NAME = 'activity-edit-popup__input';
 
@@ -14,7 +15,21 @@ function transformNameToId(name) {
   return name.toLowerCase().replace(/\s/g, '-');
 }
 
-function ActivityForm() {
+/** @typedef Props
+ * @prop {string=} id
+ *  */
+
+/** @param {Props} props */
+function ActivityForm(props) {
+  const editMode = Boolean(props.id);
+  const [activityData, setActivityData] = useState(
+    /** @type {import('../life-balancer/activity-type').ActivityType} */ ({
+      id: '',
+      name: '',
+      sessions: 7,
+      priority_bonus: 1,
+    })
+  );
   const {
     register,
     handleSubmit,
@@ -23,22 +38,45 @@ function ActivityForm() {
     setValue,
   } = useForm({
     mode: 'all',
+    defaultValues: {
+      name: activityData.name,
+      description: activityData.sessions,
+      id: activityData.id,
+    },
   });
-  const [idManuallyEdited, setIdManuallyEdited] = useState(false);
+  const [idManuallyEdited, setIdManuallyEdited] = useState(!editMode);
+
+  useEffect(() => {
+    if (!props.id) {
+      return;
+    }
+
+    const activities = getActivitiesData();
+    const activity = activities.find((item) => item.id === props.id);
+    if (activity) {
+      setActivityData(activity);
+      setValue('name', activity.name);
+      setValue('description', activity.sessions);
+      setValue('id', activity.id);
+    }
+
+    // update
+  }, [props.id]);
 
   /**
    * @param {Object} data
    *  */
   function onSubmit(data) {
-    console.info(data);
+    emitter.emit(editMode ? 'activity:update' : 'activity:create', data);
   }
 
   /**
    * @param {Event} event
    *  */
   function handleNameChange(event) {
+    const eventTarget = /** @type {HTMLInputElement} */ (event.target);
     if (!idManuallyEdited) {
-      setValue('id', transformNameToId(event.target?.value || ''));
+      setValue('id', transformNameToId(eventTarget.value || ''));
     }
   }
 
@@ -46,13 +84,15 @@ function ActivityForm() {
    * @param {Event} event
    *  */
   function handleIdChange(event) {
-    const manuallyEditedId = event.target?.value;
+    const eventTarget = /** @type {HTMLInputElement} */ (event.target);
+    const manuallyEditedId = eventTarget.value;
     setIdManuallyEdited(
       manuallyEditedId !== transformNameToId(getValues('name'))
     );
   }
 
   return (
+    // @ts-ignore
     <form action="" onSubmit={handleSubmit(onSubmit)}>
       <div className="activity-edit-popup__input-container">
         <label className="activity-edit-popup__label" htmlFor="name">
@@ -124,7 +164,11 @@ function ActivityForm() {
         >
           Cancel
         </button>
-        <button className="popup__button button" data-popup-close type="submit">
+        <button
+          className="popup__button button"
+          data-popup-close=""
+          type="submit"
+        >
           Save
         </button>
       </div>

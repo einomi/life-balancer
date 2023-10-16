@@ -12,7 +12,8 @@
   ],
   "rules": {
     "react/no-deprecated": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
   },
   "plugins": ["sonarjs"]
 }

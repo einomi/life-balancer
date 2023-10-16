@@ -9,6 +9,17 @@ class SettingsPopup {
     this.activitiesContainer = /** @type {HTMLElement} */ (
       this.element.querySelector('[data-settings-activities]')
     );
+    this.buttonAddActivity = /** @type {HTMLButtonElement} */ (
+      this.element.querySelector('[data-settings-activity-add]')
+    );
+
+    this.buttonAddActivity?.addEventListener(
+      'click',
+      /** @param {MouseEvent} event */ (event) => {
+        event.preventDefault();
+        emitter.emit('activity:add');
+      }
+    );
 
     emitter.on('activitiesDataInitialized', () => {
       this.renderActivities();
@@ -42,6 +53,19 @@ class SettingsPopup {
       `;
 
       this.activitiesContainer.appendChild(activityElement);
+
+      const buttonEdit = /** @type {HTMLButtonElement} */ (
+        activityElement.querySelector('[data-popup-open="activity-edit"]')
+      );
+
+      buttonEdit?.addEventListener(
+        'click',
+        /** @param {MouseEvent} event */ (event) => {
+          event.preventDefault();
+          emitter.emit('activity:edit', activity.id);
+        }
+      );
+
       const buttonRemove = /** @type {HTMLButtonElement} */ (
         activityElement.querySelector('[data-settings-activity-remove]')
       );

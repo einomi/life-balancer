@@ -41,6 +41,14 @@ class LifeBalancer {
       document.querySelector('#value-template')
     );
 
+    emitter.on('activity:create', (data) => {
+      this.createActivity(data);
+    });
+
+    emitter.on('activity:update', (data) => {
+      this.updateActivity(data);
+    });
+
     emitter.on('activity:remove', (id) => {
       this.removeActivity(id);
     });
@@ -88,6 +96,33 @@ class LifeBalancer {
       }
       return acc;
     });
+  }
+
+  /**
+   * @param {import('./activity-type').ActivityType} data
+   *  */
+  createActivity(data) {
+    this.activitiesData.push(data);
+    localStorage.setItem(
+      LOCAL_STORAGE_ACTIVITIES_KEY,
+      JSON.stringify(this.activitiesData)
+    );
+  }
+
+  /**
+   * @param {import('./activity-type').ActivityType} data
+   *  */
+  updateActivity(data) {
+    this.activitiesData = this.activitiesData.map((item) => {
+      if (item.id === data.id) {
+        return data;
+      }
+      return item;
+    });
+    localStorage.setItem(
+      LOCAL_STORAGE_ACTIVITIES_KEY,
+      JSON.stringify(this.activitiesData)
+    );
   }
 
   /** @param {string} id */
