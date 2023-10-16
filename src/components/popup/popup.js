@@ -35,13 +35,17 @@ class Popup {
       'click',
       /** @param {MouseEvent} event */ (event) => {
         event.stopPropagation();
+        if (!event.target) {
+          return;
+        }
+        const eventTarget = /** @type {HTMLElement} */ (event.target);
         // @ts-ignore
         if (
           this.isOpened &&
           event.target &&
-          !this.boxElement?.contains(event.target) &&
+          !this.boxElement?.contains(eventTarget) &&
           !this.popupElementsExceptThis.some((popupElement) =>
-            popupElement.contains(event.target)
+            popupElement?.contains(eventTarget)
           )
         ) {
           this.close();

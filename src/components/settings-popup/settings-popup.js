@@ -28,10 +28,10 @@ class SettingsPopup {
       activityElement.innerHTML = `
         <div class="popup__activity-inner flex space-x-5 items-center relative">
           <div class="popup__activity-cell"><span class="popup__activity-highlight">ID:</span> <span class="popup__activity-value">${activity.id}</span></div>
-          <div class="popup__activity-cell"><span class="popup__activity-highlight">Title:</span> <span class="popup__activity-value">${activity.title}</span></div>
+          <div class="popup__activity-cell"><span class="popup__activity-highlight">Title:</span> <span class="popup__activity-value">${activity.name}</span></div>
           <div class="popup__activity-cell"><span class="popup__activity-highlight">Sessions:</span> <span class="popup__activity-value">${activity.sessions}</span></div>
           <div class="popup__activity-buttons absolute right-0 flex items-center space-x-2">
-            <button class="popup__button-activity square-button" data-popup-open="activity-edit">
+            <button class="popup__button-activity square-button" data-popup-open="activity-edit" data-activity-id="${activity.id}">
               <img width="16" src="/pen.svg" alt="">
             </button>
             <button class="popup__button-activity square-button _danger" data-settings-activity-remove>
