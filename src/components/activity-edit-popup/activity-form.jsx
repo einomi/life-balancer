@@ -22,14 +22,6 @@ function transformNameToId(name) {
 /** @param {Props} props */
 function ActivityForm(props) {
   const editMode = Boolean(props.id);
-  const [activityData, setActivityData] = useState(
-    /** @type {import('../life-balancer/activity-type').ActivityType} */ ({
-      id: '',
-      name: '',
-      sessions: 7,
-      priority_bonus: 1,
-    })
-  );
   const {
     register,
     handleSubmit,
@@ -38,11 +30,6 @@ function ActivityForm(props) {
     setValue,
   } = useForm({
     mode: 'all',
-    defaultValues: {
-      name: activityData.name,
-      description: activityData.sessions,
-      id: activityData.id,
-    },
   });
   const [idManuallyEdited, setIdManuallyEdited] = useState(!editMode);
 
@@ -54,9 +41,8 @@ function ActivityForm(props) {
     const activities = getActivitiesData();
     const activity = activities.find((item) => item.id === props.id);
     if (activity) {
-      setActivityData(activity);
       setValue('name', activity.name);
-      setValue('description', activity.sessions);
+      setValue('sessions', activity.sessions);
       setValue('id', activity.id);
     }
 
@@ -64,10 +50,14 @@ function ActivityForm(props) {
   }, [props.id]);
 
   /**
-   * @param {Object} data
+   * @param {import('react-hook-form').FormData} data
    *  */
   function onSubmit(data) {
-    emitter.emit(editMode ? 'activity:update' : 'activity:create', data);
+    emitter.emit(editMode ? 'activity:update' : 'activity:create', {
+      ...data,
+      sessions: Number(data.sessions),
+    });
+    emitter.emit('popup:close', 'activity-edit');
   }
 
   /**
@@ -115,16 +105,16 @@ function ActivityForm(props) {
         <label className="activity-edit-popup__label" htmlFor="description">
           Number of Sessions
         </label>
-        {errors.description && (
-          <div className="error-message">{errors.description.message}</div>
+        {errors.sessions && (
+          <div className="error-message">{errors.sessions.message}</div>
         )}
         <input
           className={cn(INPUT_CLASS_NAME, {
-            _invalid: errors.description,
+            _invalid: errors.sessions,
           })}
-          id="description"
+          id="sessions"
           type="text"
-          {...register('description', {
+          {...register('sessions', {
             required: REQUIRED_MESSAGE,
             pattern: {
               value: /^[0-9]*$/,

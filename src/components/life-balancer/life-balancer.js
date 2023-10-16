@@ -11,6 +11,8 @@ import '../activity-edit-popup/activity-edit-popup';
 
 import Activity from './activity';
 
+const ACTIVITIES_RERENDER_EVENT = 'activities:rerender';
+
 class LifeBalancer {
   constructor() {
     this.initActivitiesData();
@@ -53,7 +55,7 @@ class LifeBalancer {
       this.removeActivity(id);
     });
 
-    emitter.on('activities:rerender', () => {
+    emitter.on(ACTIVITIES_RERENDER_EVENT, () => {
       this.renderActivities();
     });
 
@@ -107,6 +109,7 @@ class LifeBalancer {
       LOCAL_STORAGE_ACTIVITIES_KEY,
       JSON.stringify(this.activitiesData)
     );
+    emitter.emit(ACTIVITIES_RERENDER_EVENT);
   }
 
   /**
@@ -123,6 +126,7 @@ class LifeBalancer {
       LOCAL_STORAGE_ACTIVITIES_KEY,
       JSON.stringify(this.activitiesData)
     );
+    emitter.emit(ACTIVITIES_RERENDER_EVENT);
   }
 
   /** @param {string} id */
