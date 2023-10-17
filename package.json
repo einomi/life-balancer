@@ -95,7 +95,7 @@
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.19.0",
-    "tailwindcss": "^2.2.19",
+    "tailwindcss": "^3.3.3",
     "through2": "^4.0.2",
     "webpack": "^5.88.1",
     "webpack-cli": "^4.5.0"
