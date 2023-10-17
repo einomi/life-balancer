@@ -137,13 +137,19 @@
       max-width: 100%;
     }
 
-    &-number {
+    &-number-container {
       position: absolute;
-      color: #000;
-      font-size: 50px;
+      top: 56%;
+      left: 51%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-number {
+      color: #fff;
+      font-size: 42px;
       font-weight: 700;
       text-align: center;
-      text-shadow: 0 -2px 0 rgba(#fff, 0.5);
+      text-shadow: 0 -3px 0 rgba(#111, 0.5);
       will-change: transform;
 
       &._rolling {
