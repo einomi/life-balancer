@@ -25,16 +25,10 @@ class LifeBalancer {
         getActivitiesData()
       );
 
-    const totalHours = this.activitiesData.reduce(
-      (acc, item) => acc + item.sessions,
-      0
-    );
-    const totalHoursElement = /** @type {HTMLElement} */ (
+    this.totalHoursElement = /** @type {HTMLElement} */ (
       document.querySelector('[data-total-sessions]')
     );
-    totalHoursElement.textContent = Number.isNaN(totalHours)
-      ? '0'
-      : String(totalHours);
+    this.renderTotalHours();
 
     this.activityTemplate = /** @type {HTMLTemplateElement} */ (
       document.querySelector('#activity-template')
@@ -138,6 +132,16 @@ class LifeBalancer {
     );
   }
 
+  renderTotalHours() {
+    const totalSessions = this.activitiesData.reduce(
+      (acc, item) => acc + item.sessions,
+      0
+    );
+    this.totalHoursElement.textContent = Number.isNaN(totalSessions)
+      ? '0'
+      : String(totalSessions);
+  }
+
   renderActivities() {
     this.activitiesContainer.innerHTML = '';
     this.activitiesData.forEach((activity) => {
@@ -165,6 +169,7 @@ class LifeBalancer {
 
       this.activitiesContainer.appendChild(activityElement);
     });
+    this.renderTotalHours();
   }
 }
 

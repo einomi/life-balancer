@@ -9,6 +9,13 @@ import { getActivitiesData } from '../../js/utils/get-activities-data';
 const INPUT_CLASS_NAME = 'activity-edit-popup__input';
 
 /**
+ * @typedef {Object} FormData
+ * @property {string} activity_name
+ * @property {number} sessions
+ * @property {string} id
+ *  */
+
+/**
  * @param {string} name
  * */
 function transformNameToId(name) {
@@ -41,7 +48,7 @@ function ActivityForm(props) {
     const activities = getActivitiesData();
     const activity = activities.find((item) => item.id === props.id);
     if (activity) {
-      setValue('name', activity.name);
+      setValue('activity_name', activity.name);
       setValue('sessions', activity.sessions);
       setValue('id', activity.id);
     }
@@ -50,13 +57,17 @@ function ActivityForm(props) {
   }, [props.id]);
 
   /**
-   * @param {import('react-hook-form').FormData} data
+   * @param {FormData} data
    *  */
   function onSubmit(data) {
-    emitter.emit(editMode ? 'activity:update' : 'activity:create', {
-      ...data,
-      sessions: Number(data.sessions),
-    });
+    const dataToSave =
+      /** @type {import('../../components/life-balancer/activity-type').ActivityType} */ ({
+        id: data.id,
+        name: data.activity_name,
+        sessions: Number(data.sessions),
+      });
+
+    emitter.emit(editMode ? 'activity:update' : 'activity:create', dataToSave);
     emitter.emit('popup:close', 'activity-edit');
   }
 
@@ -85,19 +96,19 @@ function ActivityForm(props) {
     // @ts-ignore
     <form action="" onSubmit={handleSubmit(onSubmit)}>
       <div className="activity-edit-popup__input-container">
-        <label className="activity-edit-popup__label" htmlFor="name">
+        <label className="activity-edit-popup__label" htmlFor="activity_name">
           Activity Name
         </label>
-        {errors.name && (
-          <div className="error-message">{errors.name.message}</div>
+        {errors.activity_name && (
+          <div className="error-message">{errors.activity_name.message}</div>
         )}
         <input
           className={cn(INPUT_CLASS_NAME, {
-            _invalid: errors.name,
+            _invalid: errors.activity_name,
           })}
-          id="name"
+          id="activity_name"
           type="text"
-          {...register('name', { required: REQUIRED_MESSAGE })}
+          {...register('activity_name', { required: REQUIRED_MESSAGE })}
           onChange={handleNameChange}
         />
       </div>
