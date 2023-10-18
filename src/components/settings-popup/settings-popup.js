@@ -74,6 +74,7 @@ class SettingsPopup {
         'click',
         /** @param {MouseEvent} event */ (event) => {
           event.preventDefault();
+          event.stopPropagation();
           // TODO: refactor, remove confirm
           // eslint-disable-next-line no-alert
           const confirmed = confirm(
