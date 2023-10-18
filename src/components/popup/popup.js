@@ -2,6 +2,9 @@ import gsap from 'gsap';
 
 import { emitter } from '../../js/emitter';
 
+/** @type {Array<Popup>} */
+const popups = [];
+
 class Popup {
   /**
    * @param {HTMLElement} element
@@ -11,7 +14,9 @@ class Popup {
   constructor(element, id, popupElements) {
     this.element = element;
     this.id = id;
-    this.boxElement = this.element.querySelector('[data-popup-box]');
+    this.boxElement = /** @type {HTMLElement} */ (
+      this.element.querySelector('[data-popup-box]')
+    );
     this.closeButtons = this.element.querySelectorAll('[data-popup-close]');
     this.popupElements = popupElements;
     this.popupElementsExceptThis = Array.from(this.popupElements).filter(
@@ -53,6 +58,12 @@ class Popup {
       }
     );
 
+    this.boxElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        this.close();
+      }
+    });
+
     emitter.on('activities:rerendered', () => {
       this.initOpenButtons();
     });
@@ -79,6 +90,7 @@ class Popup {
     if (this.isOpened) {
       return;
     }
+    this.isAnimating = true;
     gsap.fromTo(
       this.element,
       { y: 20 },
@@ -87,6 +99,10 @@ class Popup {
         duration: 0.35,
         autoAlpha: 1,
         ease: 'sine.out',
+        onComplete: () => {
+          this.boxElement.focus();
+          this.isAnimating = false;
+        },
       }
     );
     this.isOpened = true;
@@ -96,13 +112,25 @@ class Popup {
     if (!this.isOpened) {
       return;
     }
+    if (this.isAnimating) {
+      return;
+    }
+    this.isAnimating = true;
     gsap.to(this.element, {
       duration: 0.3,
       autoAlpha: 0,
       ease: 'power2.out',
       y: 35,
+      onComplete: () => {
+        this.isAnimating = false;
+      },
     });
     this.isOpened = false;
+    // focus the boxElement of the last opened popup
+    const openedPopups = popups.filter((popup) => popup.isOpened);
+    const lastOpenedPopup = openedPopups[openedPopups.length - 1];
+    const lastOpenedPopupBoxElement = lastOpenedPopup?.boxElement;
+    lastOpenedPopupBoxElement?.focus();
   }
 }
 
@@ -117,7 +145,7 @@ class Popups {
       if (!id) {
         throw new Error('Popup id is not defined');
       }
-      new Popup(element, id, this.elements);
+      popups.push(new Popup(element, id, this.elements));
     });
   }
 }

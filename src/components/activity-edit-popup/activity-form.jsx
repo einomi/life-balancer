@@ -28,7 +28,7 @@ function transformNameToId(name) {
 
 /** @param {Props} props */
 function ActivityForm(props) {
-  const editMode = Boolean(props.id);
+  const isEditMode = Boolean(props.id);
   const {
     register,
     handleSubmit,
@@ -38,7 +38,7 @@ function ActivityForm(props) {
   } = useForm({
     mode: 'all',
   });
-  const [idManuallyEdited, setIdManuallyEdited] = useState(!editMode);
+  const [isIdManuallyEdited, setIsIdManuallyEdited] = useState(isEditMode);
 
   useEffect(() => {
     if (!props.id) {
@@ -67,7 +67,10 @@ function ActivityForm(props) {
         sessions: Number(data.sessions),
       });
 
-    emitter.emit(editMode ? 'activity:update' : 'activity:create', dataToSave);
+    emitter.emit(
+      isEditMode ? 'activity:update' : 'activity:create',
+      dataToSave
+    );
     emitter.emit('popup:close', 'activity-edit');
   }
 
@@ -76,7 +79,7 @@ function ActivityForm(props) {
    *  */
   function handleNameChange(event) {
     const eventTarget = /** @type {HTMLInputElement} */ (event.target);
-    if (!idManuallyEdited) {
+    if (!isIdManuallyEdited) {
       setValue('id', transformNameToId(eventTarget.value || ''));
     }
   }
@@ -87,7 +90,7 @@ function ActivityForm(props) {
   function handleIdChange(event) {
     const eventTarget = /** @type {HTMLInputElement} */ (event.target);
     const manuallyEditedId = eventTarget.value;
-    setIdManuallyEdited(
+    setIsIdManuallyEdited(
       manuallyEditedId !== transformNameToId(getValues('name'))
     );
   }
