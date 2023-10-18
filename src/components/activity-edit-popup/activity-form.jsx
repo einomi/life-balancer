@@ -35,10 +35,15 @@ function ActivityForm(props) {
     formState: { errors },
     getValues,
     setValue,
+    reset,
   } = useForm({
     mode: 'all',
   });
-  const [isIdManuallyEdited, setIsIdManuallyEdited] = useState(isEditMode);
+  const [isIdManuallyEdited, setIsIdManuallyEdited] = useState(false);
+
+  useEffect(() => {
+    reset();
+  }, [props.id]);
 
   useEffect(() => {
     if (!props.id) {
@@ -79,7 +84,7 @@ function ActivityForm(props) {
    *  */
   function handleNameChange(event) {
     const eventTarget = /** @type {HTMLInputElement} */ (event.target);
-    if (!isIdManuallyEdited) {
+    if (!isIdManuallyEdited && !isEditMode) {
       setValue('id', transformNameToId(eventTarget.value || ''));
     }
   }
@@ -91,7 +96,7 @@ function ActivityForm(props) {
     const eventTarget = /** @type {HTMLInputElement} */ (event.target);
     const manuallyEditedId = eventTarget.value;
     setIsIdManuallyEdited(
-      manuallyEditedId !== transformNameToId(getValues('name'))
+      manuallyEditedId !== transformNameToId(getValues('activity_name'))
     );
   }
 

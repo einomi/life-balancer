@@ -10,7 +10,7 @@ class SettingsPopup {
       this.element.querySelector('[data-settings-activities]')
     );
     this.buttonAddActivity = /** @type {HTMLButtonElement} */ (
-      this.element.querySelector('[data-settings-activity-add]')
+      this.element.querySelector('[data-settings-activities-add]')
     );
 
     this.buttonAddActivity?.addEventListener(

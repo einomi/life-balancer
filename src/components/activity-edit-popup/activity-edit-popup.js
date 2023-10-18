@@ -1,8 +1,13 @@
 import { render } from 'react-dom';
+import { nanoid } from 'nanoid';
 
 import { emitter } from '../../js/emitter';
 
 import ActivityForm from './activity-form.jsx';
+
+function getNonExistingId() {
+  return `non-existing-${nanoid()}`;
+}
 
 class ActivityEditPopup {
   constructor() {
@@ -11,7 +16,7 @@ class ActivityEditPopup {
     this.renderForm();
 
     emitter.on('activity:add', () => {
-      this.renderForm();
+      this.renderForm(getNonExistingId());
     });
 
     emitter.on('activity:edit', (id) => {
