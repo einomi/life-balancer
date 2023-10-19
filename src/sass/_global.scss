@@ -16,3 +16,10 @@ body {
   font-family: Athelas, Georgia, serif;
   font-size: 18px;
 }
+
+button {
+  &:focus-visible {
+    outline: 3px solid #b262cb;
+    outline-offset: 3px;
+  }
+}

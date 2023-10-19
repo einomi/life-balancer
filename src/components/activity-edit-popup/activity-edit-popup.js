@@ -13,7 +13,7 @@ class ActivityEditPopup {
   constructor() {
     this.formContainer = document.querySelector('[data-activity-edit-form]');
 
-    this.renderForm();
+    this.renderForm(getNonExistingId());
 
     emitter.on('activity:add', () => {
       this.renderForm(getNonExistingId());
@@ -25,7 +25,7 @@ class ActivityEditPopup {
   }
 
   /**
-   * @param {string=} id
+   * @param {string} id
    *  */
   renderForm(id) {
     render(

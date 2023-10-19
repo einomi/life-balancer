@@ -89,7 +89,14 @@ class DiceRoll {
     gsap.fromTo(
       this.container,
       { autoAlpha: 0 },
-      { autoAlpha: 1, duration: 0.35, ease: Power1.easeOut }
+      {
+        autoAlpha: 1,
+        duration: 0.35,
+        ease: Power1.easeOut,
+        onComplete: () => {
+          this.container.focus();
+        },
+      }
     );
     gsap.fromTo(
       this.boxElement.children,

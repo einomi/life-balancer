@@ -5,6 +5,8 @@ import { emitter } from '../../js/emitter';
 /** @type {Array<Popup>} */
 const popups = [];
 
+let isAnimating = false;
+
 class Popup {
   /**
    * @param {HTMLElement} element
@@ -90,7 +92,7 @@ class Popup {
     if (this.isOpened) {
       return;
     }
-    this.isAnimating = true;
+    isAnimating = true;
     gsap.fromTo(
       this.element,
       { y: 20 },
@@ -101,7 +103,7 @@ class Popup {
         ease: 'sine.out',
         onComplete: () => {
           this.boxElement.focus();
-          this.isAnimating = false;
+          isAnimating = false;
         },
       }
     );
@@ -112,17 +114,17 @@ class Popup {
     if (!this.isOpened) {
       return;
     }
-    if (this.isAnimating) {
+    if (isAnimating) {
       return;
     }
-    this.isAnimating = true;
+    isAnimating = true;
     gsap.to(this.element, {
       duration: 0.3,
       autoAlpha: 0,
       ease: 'power2.out',
       y: 35,
       onComplete: () => {
-        this.isAnimating = false;
+        isAnimating = false;
       },
     });
     this.isOpened = false;

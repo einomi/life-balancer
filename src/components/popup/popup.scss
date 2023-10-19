@@ -29,11 +29,23 @@
   }
 
   &__close {
-    @include hover-default;
     position: absolute;
     top: 18px;
     right: 18px;
+    border-radius: 50%;
+    transition: transform 0.05s ease-in-out, opacity 0.1s ease-in-out;
     user-select: none;
+
+    &:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      opacity: 0.5;
+      transform: scale(1.1);
+      transition-duration: 0.05s;
+    }
   }
 
   &__title {

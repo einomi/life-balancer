@@ -1,6 +1,7 @@
 .dice {
   @include button-reset;
   @include hover-default;
+  border-radius: 2px;
   visibility: hidden;
 
   &._active {

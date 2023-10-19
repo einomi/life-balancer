@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
 
 import { emitter } from '../../js/emitter';
-import { REQUIRED_MESSAGE } from '../../js/utils/constants';
+import {
+  NON_EXISTING_ID_PREFIX,
+  REQUIRED_MESSAGE,
+} from '../../js/utils/constants';
 import { getActivitiesData } from '../../js/utils/get-activities-data';
 
 const INPUT_CLASS_NAME = 'activity-edit-popup__input';
@@ -23,12 +26,14 @@ function transformNameToId(name) {
 }
 
 /** @typedef Props
- * @prop {string=} id
+ * @prop {string} id
  *  */
 
 /** @param {Props} props */
 function ActivityForm(props) {
-  const isEditMode = Boolean(props.id);
+  const isEditMode = useMemo(() => {
+    return !props.id.startsWith(NON_EXISTING_ID_PREFIX);
+  }, [props.id]);
   const {
     register,
     handleSubmit,
