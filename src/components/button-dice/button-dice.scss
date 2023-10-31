@@ -1,6 +1,8 @@
-.dice {
+.button-dice {
   @include button-reset;
   @include hover-default;
+  @include expand-area;
+  position: relative;
   border-radius: 2px;
   visibility: hidden;
 
@@ -8,7 +10,7 @@
     visibility: visible;
   }
 
-  &__svg {
+  &__icon {
     width: 22px;
     height: 22px;
     fill: #555;
@@ -18,7 +20,7 @@
   &:hover {
     transition-duration: 0.15s;
 
-    .dice__svg {
+    .button-dice__icon {
       fill: #999;
       transition-duration: 0.15s;
     }

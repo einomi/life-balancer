@@ -16,9 +16,9 @@ const clickAudio = new Audio(CLICK_SOUND);
  * @property {number} value - The value associated with the activity.
  * @property {HTMLElement} element - The HTML element associated with the activity.
  * @property {HTMLElement} valuesElement - The HTML element containing values for the activity.
- * @property {HTMLElement} buttonPlus - The HTML button for incrementing the activity value.
- * @property {HTMLElement} buttonMinus - The HTML button for decrementing the activity value.
- * @property {HTMLElement} diceButton - The HTML button for rolling a dice.
+ * @property {HTMLElement} buttonIncrement - The HTML button for incrementing the activity value.
+ * @property {HTMLElement} buttonDecremenet - The HTML button for decrementing the activity value.
+ * @property {HTMLElement} buttonDice - The HTML button for rolling a dice.
  * @method {Function} addEvents - Add event listeners for buttons.
  * @method {Function} playClickSound - Play a click sound.
  * @method {Function} increment - Increment the activity value.
@@ -48,15 +48,15 @@ class Activity {
     this.valuesElement = /** @type {HTMLElement} */ (
       this.element.querySelector('[data-values]')
     );
-    this.diceButton = /** @type {HTMLElement} */ (
-      this.element.querySelector('[data-dice]')
+    this.buttonDice = /** @type {HTMLElement} */ (
+      this.element.querySelector('[data-button-dice]')
     );
 
-    this.buttonPlus = /** @type {HTMLButtonElement} */ (
-      this.element.querySelector('[data-button-plus]')
+    this.buttonIncrement = /** @type {HTMLButtonElement} */ (
+      this.element.querySelector('[data-button-increment]')
     );
-    this.buttonMinus = /** @type {HTMLButtonElement} */ (
-      this.element.querySelector('[data-button-minus]')
+    this.buttonDecremenet = /** @type {HTMLButtonElement} */ (
+      this.element.querySelector('[data-button-decrement]')
     );
 
     // for each item id create a record in local storage if it doesn't exist
@@ -75,24 +75,24 @@ class Activity {
   }
 
   addEvents() {
-    this.buttonPlus.addEventListener('click', () => {
+    this.buttonIncrement.addEventListener('click', () => {
       this.playClickSound();
       this.increment();
     });
 
-    this.buttonMinus.addEventListener('click', () => {
+    this.buttonDecremenet.addEventListener('click', () => {
       this.playClickSound();
       this.decrement();
     });
 
-    this.diceButton.addEventListener('click', () => {
+    this.buttonDice.addEventListener('click', () => {
       const percentageOfCompleted =
         this.value / this.valuesElement.children.length;
       const diceRoll = new DiceRoll(percentageOfCompleted);
       diceRoll.show();
-      this.diceButton.classList.add('_disabled');
+      this.buttonDice.classList.add('_disabled');
       diceRoll.onDestroy(() => {
-        this.diceButton.classList.remove('_disabled');
+        this.buttonDice.classList.remove('_disabled');
       });
       diceRoll.onRollEnd(() => {
         this.value = 0;
@@ -140,19 +140,19 @@ class Activity {
     });
 
     if (this.value >= this.valuesElement.children.length) {
-      this.buttonPlus.classList.add('_disabled');
+      this.buttonIncrement.classList.add('_disabled');
     } else {
-      this.buttonPlus.classList.remove('_disabled');
+      this.buttonIncrement.classList.remove('_disabled');
     }
     if (this.value <= 0) {
-      this.buttonMinus.classList.add('_disabled');
+      this.buttonDecremenet.classList.add('_disabled');
     } else {
-      this.buttonMinus.classList.remove('_disabled');
+      this.buttonDecremenet.classList.remove('_disabled');
     }
     if (this.value > 0) {
-      this.diceButton.classList.add('_active');
+      this.buttonDice.classList.add('_active');
     } else {
-      this.diceButton.classList.remove('_active');
+      this.buttonDice.classList.remove('_active');
     }
   }
 }

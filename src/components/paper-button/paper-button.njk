@@ -1,0 +1,7 @@
+{% macro paperButton(props) %}
+  <!-- {% set className = '_plus' if props.isIncrement else '_minus' %} -->
+  <!-- {% set attribute = 'data-button-increment' if props.isIncrement else 'data-button-decrement' %} -->
+  <button class="paper-button {{ className }}" {{ attribute }}>
+    <span class="paper-button__inner"></span>
+  </button>
+{% endmacro %}

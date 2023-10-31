@@ -1,5 +1,7 @@
 {% extends './_layouts/base.njk' %}
 
+{% from './components/paper-button/paper-button.njk' import paperButton %}
+
 {% block content %}
   <img src="/background.jpg"
        alt=""
@@ -61,7 +63,7 @@
       <div>
         <div class="flex items-center">
           <div class="flex items-center space-x-6">
-            <button class="paper-icon _minus" data-button-minus></button>
+            {{ paperButton() }}
             <div class="flex items-center space-x-8" data-values>
               {% for doc in range(item.sessions) %}
                 <div class="activity-value w-[6px] rounded-[100%]">
@@ -69,10 +71,10 @@
                 </div>
               {% endfor %}
             </div>
-            <button class="paper-icon _plus" data-button-plus></button>
+            {{ paperButton({ isIncrement: true }) }}
           </div>
           <div class="ml-6 flex">
-            {% include './components/dice/dice.njk' %}
+            {% include './components/button-dice/button-dice.njk' %}
           </div>
         </div>
       </div>
