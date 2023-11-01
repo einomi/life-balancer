@@ -1,42 +1,44 @@
 {% from '../button/button.njk' import button %}
 
 <div class="popup" data-popup="settings">
-  <div class="popup__box flex flex-col" data-popup-box tabindex="0">
-    <button class="popup__close" data-popup-close>
-      <img width="32" height="32" src="/close.png" alt="" />
-    </button>
-    <div class="popup__box-inner h-full flex flex-grow flex-col items-center">
-      <h2 class="popup__title">
-        Settings
-      </h2>
-      <div class="popup__content h-full flex-grow">
-        <div class="popup__heading">
-          Activities
-        </div>
-        <div data-settings-activities class="space-y-1"></div>
-      </div>
-      <button class="popup__button-add flex items-center space-x-2 mt-5"
-        data-popup-open="activity-edit"
-        data-settings-activities-add>
-        <span class="square-button">
-          <img width="16" src="/plus.svg" alt="" />
-        </span>
-        <span>Add new</span>
+  <div class="popup__box" data-popup-box tabindex="0">
+    <div class="popup__box-inner flex flex-col">
+      <button class="popup__close" data-popup-close>
+        <img width="32" height="32" src="/close.png" alt="" />
       </button>
-      <div class="popup__buttons flex justify-center space-x-5">
-        {{
-          button({
-            children: 'Cancel',
-            className: 'popup__button _cancel',
-            attributes: 'data-popup-close'
-          })
-        }}
-        {{
-          button({
-            children: 'Save',
-            className: 'popup__button'
-          })
-        }}
+      <div class="popup__box-inner h-full flex flex-grow flex-col items-center">
+        <h2 class="popup__title">
+          Settings
+        </h2>
+        <div class="popup__content h-full flex-grow">
+          <div class="popup__heading">
+            Activities
+          </div>
+          <div data-settings-activities class="space-y-5 sm:space-y-1"></div>
+        </div>
+        <button class="popup__button-add flex items-center space-x-2 mt-5"
+          data-popup-open="activity-edit"
+          data-settings-activities-add>
+          <span class="square-button">
+            <img width="16" src="/plus.svg" alt="" />
+          </span>
+          <span>Add new</span>
+        </button>
+        <div class="popup__buttons flex justify-center space-x-5">
+          {{
+            button({
+              children: 'Cancel',
+              className: 'popup__button _cancel',
+              attributes: 'data-popup-close'
+            })
+          }}
+          {{
+            button({
+              children: 'Save',
+              className: 'popup__button'
+            })
+          }}
+        </div>
       </div>
     </div>
   </div>

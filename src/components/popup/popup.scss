@@ -13,18 +13,26 @@
 
   &__box {
     position: relative;
-    width: 30%;
-    min-width: 640px;
-    padding: 40px 60px 45px;
+    overflow: auto;
+    max-width: 95%;
+    max-height: 100%;
+    padding: 20px 20px 25px;
     border: 3px solid #312e24;
     background-color: #111;
     background-image: url('/popup-bg.jpg');
     background-size: cover;
     border-radius: 5px;
+    -webkit-overflow-scrolling: touch;
     text-align: center;
 
     &:focus-visible {
       outline: none;
+    }
+
+    @include media-sm {
+      width: 30%;
+      min-width: 640px;
+      padding: 40px 60px 45px;
     }
   }
 
@@ -49,8 +57,13 @@
   }
 
   &__title {
-    margin-bottom: 30px;
-    font-size: 32px;
+    margin-bottom: 20px;
+    font-size: 28px;
+
+    @include media-sm {
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
   }
 
   &__content {
@@ -68,15 +81,15 @@
   }
 
   &__activity-inner {
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-right: 70px;
+    @include media-sm {
+      padding-right: 70px;
+    }
   }
 
   &__activity-cell {
     overflow: hidden;
     max-width: 190px;
+    text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
 

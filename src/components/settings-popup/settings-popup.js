@@ -37,11 +37,11 @@ class SettingsPopup {
       const activityElement = document.createElement('div');
       activityElement.classList.add('settings__activity');
       activityElement.innerHTML = `
-        <div class="popup__activity-inner flex space-x-5 items-center relative">
+        <div class="popup__activity-inner flex flex-col sm:flex-row sm:space-x-5 items-center relative justify-center sm:flex-wrap">
           <div class="popup__activity-cell"><span class="popup__activity-highlight">ID:</span> <span class="popup__activity-value">${activity.id}</span></div>
           <div class="popup__activity-cell"><span class="popup__activity-highlight">Title:</span> <span class="popup__activity-value">${activity.name}</span></div>
           <div class="popup__activity-cell"><span class="popup__activity-highlight">Sessions:</span> <span class="popup__activity-value">${activity.sessions}</span></div>
-          <div class="popup__activity-buttons absolute right-0 flex items-center space-x-2">
+          <div class="popup__activity-buttons sm:absolute right-0 flex items-center space-x-2">
             <button class="popup__button-activity square-button" data-popup-open="activity-edit" data-activity-id="${activity.id}">
               <img width="16" src="/pen.svg" alt="">
             </button>
