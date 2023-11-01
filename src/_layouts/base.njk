@@ -1,3 +1,10 @@
+{% set TITLE =
+  'Life Balancer – Gamification system to help you develop good habits and achieve your goals'
+%}
+{% set DESCRIPTION =
+  'A unique gamification system for work-life balance and habit development. Roll the dice, earn rewards, and transform your daily routine into an engaging game. Learn how to create balance and stay motivated. Try Life Balancer today!'
+%}
+{% set SITE_URL = 'https://life-balancer-einomi.netlify.app/' %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,6 +35,37 @@
       href="{{ STATIC_PATH }}/favicon/favicon-16x16.png" />
     <link rel="shortcut icon" href="{{ STATIC_PATH }}/favicon/favicon.ico" />
     <link rel="manifest" href="{{ STATIC_PATH }}/favicon/site.webmanifest" />
+
+    {% block meta_description %}
+      <meta name="description" content="{{ DESCRIPTION }}" />
+    {% endblock %}
+
+    {% block meta_og_title %}
+      <meta property="og:title" content="{{ TITLE }}" />
+    {% endblock %}
+    {% block meta_og_description %}
+      <meta property="og:description" content="{{ DESCRIPTION }}" />
+    {% endblock %}
+    <meta property="og:image" content="https://aeinomi.com/sharing.png" />
+    {% block meta_og_url %}
+      <meta property="og:url" content="{{ SITE_URL }}" />
+    {% endblock %}
+    <meta property="og:type" content="website" />
+    {% block meta_og_site_name %}
+      <meta property="og:site_name" content="{{ TITLE }}" />
+    {% endblock %}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aeinomi" />
+    <meta name="twitter:creator" content="@aeinomi" />
+    {% block meta_twitter %}
+      <meta name="twitter:title" content="{{ TITLE }}" />
+      <meta name="twitter:description" content="{{ DESCRIPTION }}" />
+    {% endblock %}
+    <meta name="twitter:image" content="https://aeinomi.com/sharing.png" />
+    {% block meta %}
+
+    {% endblock %}
   </head>
   <body>
     {% svg_sprite %}
