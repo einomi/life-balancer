@@ -7,6 +7,10 @@
   border-right: 2px solid $gap-color;
   border-bottom: 2px solid $gap-color;
 
+  @include media-md {
+    width: 60px * 4 + 2px;
+  }
+
   &__row {
     display: flex;
 
@@ -26,5 +30,10 @@
     border-right: none;
     border-bottom: none;
     background-color: rgba(#101012, 0.5);
+
+    @include media-md {
+      width: 60px;
+      height: 60px;
+    }
   }
 }

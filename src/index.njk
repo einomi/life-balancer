@@ -10,29 +10,31 @@
   <div class="page-home page relative">
     <div class="page-home__container container relative min-h-[100vh] flex items-center">
       <div class="container__inner w-full relative">
-        <div class="flex absolute right-0 top-3 text-[28px] text-[#8c8c8c] items-center space-x-6">
-          <button class="button-settings hover:-rotate-45 duration-500 transition-rotate transform-gpu  relative top-1 flex-shrink-0" data-popup-open="settings">
-            <svg width="22"
-                 height="22"
-                 viewBox="0 0 380.7 380.7"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path d="m370.82 158.03-40.6-2.25c-3.51-14.24-9.14-27.65-16.53-39.87l27.13-30.31c3.85-3.86 3.85-10.12 0-13.98l-31.74-31.74c-3.86-3.85-10.12-3.85-13.98 0l-30.31 27.13c-12.22-7.39-25.63-13.02-39.87-16.53l-2.25-40.6c0-5.45-4.42-9.88-9.88-9.88h-44.88c-5.46 0-9.88 4.43-9.88 9.88l-2.25 40.6c-14.24 3.51-27.65 9.14-39.87 16.53l-30.31-27.13c-3.86-3.85-10.12-3.85-13.98 0l-31.74 31.74c-3.85 3.86-3.85 10.12 0 13.98l27.13 30.31c-7.39 12.22-13.02 25.63-16.53 39.87l-40.6 2.25c-5.45 0-9.88 4.42-9.88 9.88v44.88c0 5.46 4.43 9.88 9.88 9.88l40.6 2.25c3.51 14.24 9.14 27.65 16.53 39.87l-27.13 30.31c-3.85 3.86-3.85 10.12 0 13.98l31.74 31.74c3.86 3.85 10.12 3.85 13.98 0l30.31-27.13c12.22 7.39 25.63 13.02 39.87 16.53l2.25 40.6c0 5.45 4.42 9.88 9.88 9.88h44.88c5.46 0 9.88-4.43 9.88-9.88l2.25-40.6c14.24-3.51 27.65-9.14 39.87-16.53l30.31 27.13c3.86 3.85 10.12 3.85 13.98 0l31.74-31.74c3.85-3.86 3.85-10.12 0-13.98l-27.13-30.31c7.39-12.22 13.02-25.63 16.53-39.87l40.6-2.25c5.45 0 9.88-4.42 9.88-9.88v-44.88c0-5.46-4.43-9.88-9.88-9.88zm-180.47 100.89c-39.79 0-72.04-30.7-72.04-68.57s32.26-68.57 72.04-68.57 72.04 30.7 72.04 68.57-32.26 68.57-72.04 68.57z"
-                    fill="#777" />
-            </svg>
-          </button>
-          <div class="flex items-center space-x-2">
-            <img src="/money.png"
-                 alt=""
-                 class="w-[21px] flex-shrink-0 relative top-[0.15em]" /> <span data-money-balance>0</span>
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="title tracking-[0.06em] text-[28px] md:text-[40px] text-[#f4f4f4]">
+            Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px] hidden sm:inline">v0.0.1</span>
+          </h1>
+          <div class="flex right-0 top-3 text-[28px] text-[#8c8c8c] items-center space-x-3 md:space-x-6">
+            <button class="button-settings hover:-rotate-45 duration-500 transition-rotate transform-gpu relative md:top-1 flex-shrink-0" data-popup-open="settings">
+              <svg width="22"
+                   height="22"
+                   viewBox="0 0 380.7 380.7"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path d="m370.82 158.03-40.6-2.25c-3.51-14.24-9.14-27.65-16.53-39.87l27.13-30.31c3.85-3.86 3.85-10.12 0-13.98l-31.74-31.74c-3.86-3.85-10.12-3.85-13.98 0l-30.31 27.13c-12.22-7.39-25.63-13.02-39.87-16.53l-2.25-40.6c0-5.45-4.42-9.88-9.88-9.88h-44.88c-5.46 0-9.88 4.43-9.88 9.88l-2.25 40.6c-14.24 3.51-27.65 9.14-39.87 16.53l-30.31-27.13c-3.86-3.85-10.12-3.85-13.98 0l-31.74 31.74c-3.85 3.86-3.85 10.12 0 13.98l27.13 30.31c-7.39 12.22-13.02 25.63-16.53 39.87l-40.6 2.25c-5.45 0-9.88 4.42-9.88 9.88v44.88c0 5.46 4.43 9.88 9.88 9.88l40.6 2.25c3.51 14.24 9.14 27.65 16.53 39.87l-27.13 30.31c-3.85 3.86-3.85 10.12 0 13.98l31.74 31.74c3.86 3.85 10.12 3.85 13.98 0l30.31-27.13c12.22 7.39 25.63 13.02 39.87 16.53l2.25 40.6c0 5.45 4.42 9.88 9.88 9.88h44.88c5.46 0 9.88-4.43 9.88-9.88l2.25-40.6c14.24-3.51 27.65-9.14 39.87-16.53l30.31 27.13c3.86 3.85 10.12 3.85 13.98 0l31.74-31.74c3.85-3.86 3.85-10.12 0-13.98l-27.13-30.31c7.39-12.22 13.02-25.63 16.53-39.87l40.6-2.25c5.45 0 9.88-4.42 9.88-9.88v-44.88c0-5.46-4.43-9.88-9.88-9.88zm-180.47 100.89c-39.79 0-72.04-30.7-72.04-68.57s32.26-68.57 72.04-68.57 72.04 30.7 72.04 68.57-32.26 68.57-72.04 68.57z"
+                      fill="#777" />
+              </svg>
+            </button>
+            <div class="flex items-center space-x-1.5 md:space-x-2">
+              <img src="/money.png"
+                   alt=""
+                   class="w-[21px] flex-shrink-0 relative md:top-[0.15em]" /> <span class="relative -top-0.5 md:top-0" data-money-balance>0</span>
+            </div>
           </div>
         </div>
-        <h1 class="title tracking-[0.06em] text-[24px] md:text-[40px] text-[#f4f4f4] mb-8">
-          Life Balancer <span class="text-gray-300 text-[0.5em] text-[#797979] tracking-[0px]">v0.0.1</span>
-        </h1>
         <div class="h-[1px] bg-[#666] mb-10 opacity-30"></div>
         <div class="flex justify-between w-full flex-col md:flex-row">
           <div class="mb-10 md:mb-0">
-            <h2 class="text-[32px] mb-4">
+            <h2 class="text-[24px] md:text-[32px] mb-4">
               Activities
             </h2>
             <div class="space-y-8">
@@ -60,21 +62,16 @@
   </script>
   <template id="activity-template">
     <div data-activity="" class="select-none">
-      <h2 class="text-[#abaeba] text-[24px] mb-3" data-name></h2>
+      <h2 class="text-[#abaeba] text-[20px] md:text-[24px] mb-3" data-name></h2>
       <div>
         <div class="flex items-center">
           <div class="flex items-center space-x-6">
             {{ paperButton() }}
-            <div class="flex items-center space-x-8" data-values>
-              {% for doc in range(item.sessions) %}
-                <div class="activity-value w-[6px] rounded-[100%]">
-                  <div class="pt-[100%]"></div>
-                </div>
-              {% endfor %}
+            <div class="flex items-center space-x-4 sm:space-x-8" data-values>
             </div>
             {{ paperButton({ isIncrement: true }) }}
           </div>
-          <div class="ml-6 flex">
+          <div class="ml-4 md:ml-6 flex">
             {% include './components/button-dice/button-dice.njk' %}
           </div>
         </div>
@@ -82,7 +79,7 @@
     </div>
   </template>
   <template id="value-template">
-    <div class="activity-value w-[6px] rounded-[100%]">
+    <div class="activity-value w-[4px] md:w-[6px] rounded-[100%]">
       <div class="pt-[100%]"></div>
     </div>
   </template>
