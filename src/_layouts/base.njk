@@ -46,7 +46,7 @@
     {% block meta_og_description %}
       <meta property="og:description" content="{{ DESCRIPTION }}" />
     {% endblock %}
-    <meta property="og:image" content="https://aeinomi.com/sharing.png" />
+    <meta property="og:image" content="{{ SITE_URL }}sharing.png" />
     {% block meta_og_url %}
       <meta property="og:url" content="{{ SITE_URL }}" />
     {% endblock %}
@@ -62,7 +62,7 @@
       <meta name="twitter:title" content="{{ TITLE }}" />
       <meta name="twitter:description" content="{{ DESCRIPTION }}" />
     {% endblock %}
-    <meta name="twitter:image" content="https://aeinomi.com/sharing.png" />
+    <meta name="twitter:image" content="{{ SITE_URL }}sharing.png" />
     {% block meta %}
 
     {% endblock %}
