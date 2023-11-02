@@ -96,6 +96,7 @@ class DiceRoll {
         onComplete: () => {
           this.container.focus();
         },
+        overwrite: true,
       }
     );
     gsap.fromTo(
@@ -201,6 +202,7 @@ class DiceRoll {
       autoAlpha: 0,
       duration: 0.1,
       ease: Power1.easeOut,
+      overwrite: true,
     });
 
     this.destroy();
